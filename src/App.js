@@ -1,25 +1,67 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes, useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Menu, List } from 'antd'
+
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const navigate = useNavigate()
+
+
+
+  return <div style={{ display: "flex", msFlexDirection: "row" }}>
+    <Menu
+      onClick={({ key }) => { navigate(key) }}
+
+      items={[
+        { label: "Roles", key: "/roles" },
+        { label: "Executors", key: "/executors" }
+      ]}
+    ></Menu>
+    <Content />
+
+  </div>
 }
 
-export default App;
+function Content() {
+  const [executors, setExecutors] = useState([]);
+  const [roles, setRoles] = useState([]);
+  useEffect(() => {
+    const getExecutors = () => {
+      fetch("http://resilience-env.eba-trhp5n3y.eu-central-1.elasticbeanstalk.com/executor/")
+        .then((res) => res.json())
+        .then((data) => { setExecutors(data) })
+    }
+    getExecutors()
+
+    const getRoles = () => {
+      fetch("http://resilience-env.eba-trhp5n3y.eu-central-1.elasticbeanstalk.com/role/")
+        .then((res) => res.json())
+        .then((data) => { setRoles(data) })
+    }
+    getRoles()
+  }, [])
+
+  return <div>
+
+    <Routes>
+      <Route path="/roles" 
+        element={<div>
+          <List
+          dataSource={roles.map(a => a.name)}
+          renderItem={(item) => <List.Item>{item}</List.Item>} /></div>}></Route>
+      <Route path="/executors" 
+        element={ <div>
+            <List
+              dataSource={executors.map(a => a.name)}
+              renderItem={(item) => 
+                <List.Item>{item}</List.Item>}
+             />
+          </div>}>
+      </Route>
+    </Routes>
+  </div>
+}
+
+export default App
