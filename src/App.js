@@ -27,7 +27,7 @@ function Content() {
   useEffect(() => {
     const getExecutors = () => {
       fetch(
-        "http://resilience-env.eba-trhp5n3y.eu-central-1.elasticbeanstalk.com/executor/"
+        "https://d14f98cedwjzih.cloudfront.net/executor/"
       )
         .then((res) => res.json())
         .then((data) => {
@@ -38,7 +38,7 @@ function Content() {
 
     const getRoles = () => {
       fetch(
-        "http://resilience-env.eba-trhp5n3y.eu-central-1.elasticbeanstalk.com/role/"
+        "https://d14f98cedwjzih.cloudfront.net/role/"
       )
         .then((res) => res.json())
         .then((data) => {
