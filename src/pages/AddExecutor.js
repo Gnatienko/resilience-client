@@ -14,7 +14,7 @@ function AddRole() {
                 <Input />
               </Form.Item>
               <Form.Item label="Weight">
-              <Slider defaultValue={5} min={0} max={10} step={0.01} />
+                <Slider defaultValue={5} min={0} max={10} step={0.01} />
               </Form.Item>
               </div>
               <Form.Item formLayout="horizontal">
@@ -24,7 +24,7 @@ function AddRole() {
           }
         ></Route>
       </Routes>
-  
+ 
   );
 }
 
