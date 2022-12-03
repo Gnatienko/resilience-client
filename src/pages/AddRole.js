@@ -6,7 +6,7 @@ function AddRole() {
   const [name, setName] = useState("")
   const [weight, setWeight] = useState(null)
 
-  const test = () => {
+  const post = () => {
     const options = { method: "POST" }
     fetch(
       "https://d14f98cedwjzih.cloudfront.net/role?name=" +
@@ -38,7 +38,7 @@ function AddRole() {
                 </Form.Item>
               </div>
               <Form.Item formLayout="horizontal">
-                <Button onClick={test} type="primary">
+                <Button onClick={post} type="primary">
                   Add role
                 </Button>
               </Form.Item>

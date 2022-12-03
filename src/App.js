@@ -3,7 +3,7 @@ import { Menu } from "antd"
 import Roles from "./pages/Roles"
 import Executors from "./pages/Executors"
 import AddRole from "./pages/AddRole"
-import EditRole from "./pages/EditRole"
+import Role from "./pages/Role"
 
 const SubMenu = Menu.SubMenu
 
@@ -30,7 +30,7 @@ function App() {
       <Roles />
       <Executors />
       <AddRole />
-      <EditRole />
+      <Role />
     </div>
   )
 }
