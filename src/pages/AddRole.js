@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom"
 import { Button, Form, Input, Slider } from "antd"
-import { useState } from "react"
+import { useState, useNavigate } from "react"
 
 function AddRole() {
   const [name, setName] = useState("")
   const [weight, setWeight] = useState(null)
+  const navigate = useNavigate()
 
   const post = () => {
     const options = { method: "POST" }
@@ -16,6 +17,8 @@ function AddRole() {
       options
     )
   }
+
+  navigate("/roles")
 
   return (
     <div style={{ width: "100%" }}>

@@ -27,7 +27,7 @@ function Role() {
   return (
     <div style={{ width: "100%" }}>
       <Routes>
-        <Route path="/roles/:id" element={<Element />}></Route>
+        <Route path="/role/:id" element={<Element />}></Route>
       </Routes>
     </div>
   )
