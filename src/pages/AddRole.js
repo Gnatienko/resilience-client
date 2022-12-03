@@ -1,31 +1,53 @@
-import { Route, Routes } from "react-router-dom";
-import { Button, Form, Input, Slider } from "antd";
+import { Route, Routes } from "react-router-dom"
+import { Button, Form, Input, Slider } from "antd"
+import { useState } from "react"
 
 function AddRole() {
-  return (
+  const [name, setName] = useState("")
+  const [weight, setWeight] = useState(null)
 
+  const test = () => {
+    const options = { method: "POST" }
+    fetch(
+      "https://d14f98cedwjzih.cloudfront.net/role?name=" +
+        name +
+        "&weight=" +
+        weight,
+      options
+    )
+  }
+
+  return (
+    <div style={{ width: "100%" }}>
       <Routes>
         <Route
           path="/roles/add"
           element={
-            <Form style={{ margin: "2rem", width: "100%"}}>
-              <div style={{  width: "30%"}}>
-              <Form.Item label="Name">
-                <Input />
-              </Form.Item>
-              <Form.Item label="Weight">
-              <Slider defaultValue={5} min={0} max={10} step={0.01} />
-              </Form.Item>
+            <Form style={{ margin: "2rem", width: "100%" }}>
+              <div style={{ width: "30%" }}>
+                <Form.Item label="Name">
+                  <Input onChange={(e) => setName(e.target.value)} />
+                </Form.Item>
+                <Form.Item label="Weight">
+                  <Slider
+                    defaultValue={5}
+                    min={0}
+                    max={10}
+                    onChange={(e) => setWeight(e)}
+                  />
+                </Form.Item>
               </div>
               <Form.Item formLayout="horizontal">
-                <Button type="primary">Add role</Button>
+                <Button onClick={test} type="primary">
+                  Add role
+                </Button>
               </Form.Item>
             </Form>
           }
         ></Route>
       </Routes>
-  
-  );
+    </div>
+  )
 }
 
-export default AddRole;
+export default AddRole
