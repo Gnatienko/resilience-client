@@ -29,7 +29,7 @@ function Roles() {
                 renderItem={(item) => (
                   <List.Item
                     onClick={() => {
-                      navigate("/roles/" + item.id)
+                      navigate("/role/" + item.id)
                     }}
                   >
                     {item.name}
