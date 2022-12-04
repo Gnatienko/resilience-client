@@ -1,12 +1,13 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import { Button, Form, Input, Slider } from "antd"
 import { useState } from "react"
 
 function AddRole() {
   const [name, setName] = useState("")
   const [weight, setWeight] = useState(null)
+  const navigate = useNavigate()
 
-  const test = () => {
+  const Post = () => {
     const options = { method: "POST" }
     fetch(
       "https://d14f98cedwjzih.cloudfront.net/role?name=" +
@@ -15,6 +16,7 @@ function AddRole() {
         weight,
       options
     )
+    navigate("/roles")
   }
 
   return (
@@ -38,7 +40,7 @@ function AddRole() {
                 </Form.Item>
               </div>
               <Form.Item>
-                <Button onClick={test} type="primary">
+                <Button onClick={Post} type="primary">
                   Add role
                 </Button>
               </Form.Item>
