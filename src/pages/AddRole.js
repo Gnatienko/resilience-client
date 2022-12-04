@@ -1,13 +1,12 @@
 import { Route, Routes } from "react-router-dom"
 import { Button, Form, Input, Slider } from "antd"
-import { useState, useNavigate } from "react"
+import { useState } from "react"
 
 function AddRole() {
   const [name, setName] = useState("")
   const [weight, setWeight] = useState(null)
-  const navigate = useNavigate()
 
-  const post = () => {
+  const test = () => {
     const options = { method: "POST" }
     fetch(
       "https://d14f98cedwjzih.cloudfront.net/role?name=" +
@@ -17,8 +16,6 @@ function AddRole() {
       options
     )
   }
-
-  navigate("/roles")
 
   return (
     <div style={{ width: "100%" }}>
@@ -40,8 +37,8 @@ function AddRole() {
                   />
                 </Form.Item>
               </div>
-              <Form.Item formLayout="horizontal">
-                <Button onClick={post} type="primary">
+              <Form.Item>
+                <Button onClick={test} type="primary">
                   Add role
                 </Button>
               </Form.Item>
