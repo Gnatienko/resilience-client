@@ -4,7 +4,7 @@ import { useState } from "react"
 
 function AddRole() {
   const [name, setName] = useState("")
-  const [weight, setWeight] = useState(null)
+  const [weight, setWeight] = useState(5)
   const navigate = useNavigate()
 
   const Post = () => {
