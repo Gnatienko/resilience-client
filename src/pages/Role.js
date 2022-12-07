@@ -18,29 +18,30 @@ function Element() {
   }, [id])
 
   return (
-    <div>
-      <Form>
-        <Form.Item label="Name">
-          <Input value={role.name}></Input>
-        </Form.Item>
-        <Form.Item label="Weight">
-          <Slider min={0} max={10} value={role.weight}></Slider>
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary">Submit</Button>
-        </Form.Item>
-      </Form>
-    </div>
+    <Form>
+      <Form.Item label="Name">
+        <Input value={role.name}></Input>
+      </Form.Item>
+      <Form.Item label="Weight">
+        <Slider
+          min={0}
+          max={10}
+          style={{ width: "30rem" }}
+          value={role.weight}
+        ></Slider>
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary">Submit</Button>
+      </Form.Item>
+    </Form>
   )
 }
 
 function Role() {
   return (
-    <div style={{ width: "100%" }}>
-      <Routes>
-        <Route path="/role/:id" element={<Element />}></Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/role/:id" element={<Element />}></Route>
+    </Routes>
   )
 }
 
