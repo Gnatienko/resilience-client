@@ -1,10 +1,13 @@
 import { Route, Routes, useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input } from "antd"
+import { Button, Form, Input, List, Select, Slider } from "antd"
 
 function Element() {
   let { id } = useParams()
   const [executor, setExecutor] = useState([])
+  const [roles, setRoles] = useState([])
+  const [skills, setSkills] = useState([])
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -16,6 +19,26 @@ function Element() {
         })
     }
     getExecutor(id)
+
+    const getRoles = () => {
+      fetch("https://d14f98cedwjzih.cloudfront.net/role/")
+        .then((res) => res.json())
+        .then((data) => {
+          setRoles(data)
+        })
+    }
+    getRoles()
+
+    const getSkills = (id) => {
+      fetch(
+        "https://d14f98cedwjzih.cloudfront.net/executor/skill?executorId=" + id
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          setSkills(data)
+        })
+    }
+    getSkills(id)
   }, [id])
 
   const handleChange = (field, newVal) => {
@@ -25,7 +48,7 @@ function Element() {
     })
   }
 
-  const Submit = () => {
+  const SaveChanges = () => {
     const options = { method: "PUT" }
     fetch(
       "https://d14f98cedwjzih.cloudfront.net/executor?name=" +
@@ -38,19 +61,43 @@ function Element() {
   }
 
   return (
-    <Form>
-      <Form.Item label="Name">
-        <Input
-          value={executor.name}
-          onChange={(e) => handleChange("name", e.target.value)}
-        ></Input>
-      </Form.Item>
-      <Form.Item>
-        <Button onClick={Submit} type="primary">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <div>
+      <Form>
+        <Form.Item label="Name">
+          <Input
+            value={executor.name}
+            onChange={(e) => handleChange("name", e.target.value)}
+          ></Input>
+        </Form.Item>
+        <Form.Item>
+          <Button onClick={SaveChanges} type="primary">
+            Save changes
+          </Button>
+        </Form.Item>
+      </Form>
+
+      <Select
+        showSearch
+        style={{ width: "30rem" }}
+        placeholder="Chose the function"
+        options={roles.map((e) => {
+          return {
+            id: e.id,
+            value: e.name,
+          }
+        })}
+      />
+
+      <Slider></Slider>
+      <Button onClick={SaveChanges} type="primary">
+        Add skill
+      </Button>
+
+      <List
+        dataSource={skills}
+        renderItem={(item) => <List.Item>{item.id}</List.Item>}
+      ></List>
+    </div>
   )
 }
 
