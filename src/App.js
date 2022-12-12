@@ -4,6 +4,8 @@ import Roles from "./pages/Roles"
 import Executors from "./pages/Executors"
 import AddRole from "./pages/AddRole"
 import Role from "./pages/Role"
+import Executor from "./pages/Executor"
+
 import "./App.css"
 
 const SubMenu = Menu.SubMenu
@@ -32,6 +34,7 @@ function App() {
       <Executors />
       <AddRole />
       <Role />
+      <Executor />
     </div>
   )
 }

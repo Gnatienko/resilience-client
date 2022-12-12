@@ -1,9 +1,10 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { List } from "antd"
 
 function Executors() {
   const [executors, setExecutors] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getExecutors = () => {
@@ -24,8 +25,16 @@ function Executors() {
           element={
             <div>
               <List
-                dataSource={executors.map((a) => a.name)}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
+                dataSource={executors}
+                renderItem={(item) => (
+                  <List.Item
+                    onClick={() => {
+                      navigate("/executor/" + item.id)
+                    }}
+                  >
+                    {item.name}
+                  </List.Item>
+                )}
               />
             </div>
           }
