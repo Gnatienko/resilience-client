@@ -18,29 +18,27 @@ function Executors() {
   }, [])
 
   return (
-    <div>
-      <Routes>
-        <Route
-          path="/executors"
-          element={
-            <div>
-              <List
-                dataSource={executors}
-                renderItem={(item) => (
-                  <List.Item
-                    onClick={() => {
-                      navigate("/executor/" + item.id)
-                    }}
-                  >
-                    {item.name}
-                  </List.Item>
-                )}
-              />
-            </div>
-          }
-        ></Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route
+        path="/executors"
+        element={
+          <div>
+            <List
+              dataSource={executors}
+              renderItem={(item) => (
+                <List.Item
+                  onClick={() => {
+                    navigate("/executor/" + item.id)
+                  }}
+                >
+                  {item.name}
+                </List.Item>
+              )}
+            />
+          </div>
+        }
+      ></Route>
+    </Routes>
   )
 }
 

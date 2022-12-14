@@ -95,7 +95,7 @@ function Element() {
 
       <List
         dataSource={skills}
-        renderItem={(item) => <List.Item>{item.id}</List.Item>}
+        renderItem={(item) => <List.Item>{item}</List.Item>}
       ></List>
     </div>
   )

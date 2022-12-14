@@ -18,29 +18,27 @@ function Roles() {
   }, [])
 
   return (
-    <div>
-      <Routes>
-        <Route
-          path="/roles"
-          element={
-            <div>
-              <List
-                dataSource={roles}
-                renderItem={(item) => (
-                  <List.Item
-                    onClick={() => {
-                      navigate("/role/" + item.id)
-                    }}
-                  >
-                    {item.name}
-                  </List.Item>
-                )}
-              />
-            </div>
-          }
-        ></Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route
+        path="/roles"
+        element={
+          <div>
+            <List
+              dataSource={roles}
+              renderItem={(item) => (
+                <List.Item
+                  onClick={() => {
+                    navigate("/role/" + item.id)
+                  }}
+                >
+                  {item.name}
+                </List.Item>
+              )}
+            />
+          </div>
+        }
+      ></Route>
+    </Routes>
   )
 }
 

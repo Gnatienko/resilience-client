@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Route, Routes } from "react-router-dom"
 import { Menu } from "antd"
 import Roles from "./pages/Roles"
 import Executors from "./pages/Executors"
@@ -23,7 +23,7 @@ function App() {
         }}
       >
         <SubMenu key="roles" title={<span>Roles</span>}>
-          <Menu.Item key="/roles/add">Add role</Menu.Item>
+          {/* <Menu.Item key="/roles/add">Add role</Menu.Item> */}
           <Menu.Item key="/roles">All roles</Menu.Item>
         </SubMenu>
         <SubMenu key="executors" title={<span>Executors</span>}>
@@ -32,9 +32,15 @@ function App() {
       </Menu>
       <Roles />
       <Executors />
-      <AddRole />
+      {/* <AddRole /> */}
       <Role />
       <Executor />
+
+      <Routes>
+        <Route path="/roles/add">
+          <AddRole />
+        </Route>
+      </Routes>
     </div>
   )
 }
