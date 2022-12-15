@@ -7,6 +7,9 @@ function Element() {
   const [executor, setExecutor] = useState([])
   const [roles, setRoles] = useState([])
   const [skills, setSkills] = useState([])
+  const [selectedRole, setSelectedRole] = useState({})
+
+  const [qualification, setQualification] = useState(5)
 
   const navigate = useNavigate()
 
@@ -55,6 +58,26 @@ function Element() {
     navigate("/executors")
   }
 
+  const handleChangeRoleSelect = (name) => {
+    setSelectedRole(roles.find((x) => x.name === name))
+  }
+
+  const addSkill = () => {
+    console.log(selectedRole)
+    console.log(qualification)
+
+    const options = { method: "PUT" }
+    fetch(
+      "https://d14f98cedwjzih.cloudfront.net/executor/skill?executorId=" +
+        executor.id +
+        "&roleId=" +
+        selectedRole.id +
+        "&qualification=" +
+        qualification,
+      options
+    )
+  }
+
   return (
     <div>
       <Form>
@@ -75,16 +98,23 @@ function Element() {
         showSearch
         style={{ width: "30rem" }}
         placeholder="Chose the function"
+        onChange={(e) => handleChangeRoleSelect(e)}
         options={roles.map((e) => {
           return {
             id: e.id,
             value: e.name,
+            title: e.weight,
           }
         })}
       />
 
-      <Slider></Slider>
-      <Button onClick={SaveChanges} type="primary">
+      <Slider
+        min={0}
+        max={10}
+        value={qualification}
+        onChange={(e) => setQualification(e)}
+      ></Slider>
+      <Button onClick={addSkill} type="primary">
         Add skill
       </Button>
 
