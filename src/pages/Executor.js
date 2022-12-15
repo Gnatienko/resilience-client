@@ -62,6 +62,11 @@ function Element() {
     setSelectedRole(roles.find((x) => x.name === name))
   }
 
+  const handleItemClick = (name, qualification) => {
+    setSelectedRole(roles.find((x) => x.name === name))
+    setQualification(qualification)
+  }
+
   const addSkill = () => {
     console.log(selectedRole)
     console.log(qualification)
@@ -96,6 +101,7 @@ function Element() {
 
       <Select
         showSearch
+        value={selectedRole.name}
         style={{ width: "30rem" }}
         placeholder="Chose the function"
         onChange={(e) => handleChangeRoleSelect(e)}
@@ -120,7 +126,15 @@ function Element() {
 
       <List
         dataSource={skills}
-        renderItem={(item) => <List.Item>{item.name}</List.Item>}
+        renderItem={(item) => (
+          <List.Item
+            onClick={() => {
+              handleItemClick(item.name, item.qualification)
+            }}
+          >
+            {item.name}
+          </List.Item>
+        )}
       ></List>
     </div>
   )
