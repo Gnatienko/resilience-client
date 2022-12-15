@@ -21,10 +21,16 @@ function Element() {
         ),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
-      console.log(data)
       setExecutor(data[0])
       setRoles(data[1])
-      setSkills(data[2])
+      setSkills(
+        data[2].map((e) => {
+          return {
+            ...e,
+            name: data[1].find((x) => x.id === e.roleId).name,
+          }
+        })
+      )
     }
 
     fetchExecutor(id)
@@ -84,7 +90,7 @@ function Element() {
 
       <List
         dataSource={skills}
-        renderItem={(item) => <List.Item>{item.id}</List.Item>}
+        renderItem={(item) => <List.Item>{item.name}</List.Item>}
       ></List>
     </div>
   )
