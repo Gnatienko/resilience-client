@@ -33,13 +33,13 @@ function App() {
         </SubMenu>
       </Menu>
       <Roles />
-      <Executors />
 
       <Role />
       <Executor />
 
       <Routes>
         <Route path="/roles/add" element={<AddRole />}></Route>
+        <Route path="/executors" element={<Executors />}></Route>
         <Route path="/executors/add" element={<AddExecutor />}></Route>
       </Routes>
     </div>
