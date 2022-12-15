@@ -5,6 +5,7 @@ import Executors from "./pages/Executors"
 import AddRole from "./pages/AddRole"
 import Role from "./pages/Role"
 import Executor from "./pages/Executor"
+import AddExecutor from "./pages/AddExecutor"
 
 import "./App.css"
 
@@ -28,6 +29,7 @@ function App() {
         </SubMenu>
         <SubMenu key="executors" title={<span>Executors</span>}>
           <Menu.Item key="/executors">All executors</Menu.Item>
+          <Menu.Item key="/executors/add">Add executor</Menu.Item>
         </SubMenu>
       </Menu>
       <Roles />
@@ -38,6 +40,7 @@ function App() {
 
       <Routes>
         <Route path="/roles/add" element={<AddRole />}></Route>
+        <Route path="/executors/add" element={<AddExecutor />}></Route>
       </Routes>
     </div>
   )
