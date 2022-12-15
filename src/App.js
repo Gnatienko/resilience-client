@@ -23,7 +23,7 @@ function App() {
         }}
       >
         <SubMenu key="roles" title={<span>Roles</span>}>
-          {/* <Menu.Item key="/roles/add">Add role</Menu.Item> */}
+          <Menu.Item key="/roles/add">Add role</Menu.Item>
           <Menu.Item key="/roles">All roles</Menu.Item>
         </SubMenu>
         <SubMenu key="executors" title={<span>Executors</span>}>
@@ -32,14 +32,12 @@ function App() {
       </Menu>
       <Roles />
       <Executors />
-      {/* <AddRole /> */}
+
       <Role />
       <Executor />
 
       <Routes>
-        <Route path="/roles/add">
-          <AddRole />
-        </Route>
+        <Route path="/roles/add" element={<AddRole />}></Route>
       </Routes>
     </div>
   )
