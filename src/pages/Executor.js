@@ -11,34 +11,23 @@ function Element() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const getExecutor = (id) => {
-      fetch("https://d14f98cedwjzih.cloudfront.net/executor/?id=" + id)
-        .then((res) => res.json())
-        .then((data) => {
-          setExecutor(data)
-        })
+    const fetchExecutor = async (id) => {
+      const res = await Promise.all([
+        fetch("https://d14f98cedwjzih.cloudfront.net/executor/?id=" + id),
+        fetch("https://d14f98cedwjzih.cloudfront.net/role/"),
+        fetch(
+          "https://d14f98cedwjzih.cloudfront.net/executor/skill?executorId=" +
+            id
+        ),
+      ])
+      const data = await Promise.all(res.map((r) => r.json()))
+      console.log(data)
+      setExecutor(data[0])
+      setRoles(data[1])
+      setSkills(data[2])
     }
-    getExecutor(id)
 
-    const getRoles = () => {
-      fetch("https://d14f98cedwjzih.cloudfront.net/role/")
-        .then((res) => res.json())
-        .then((data) => {
-          setRoles(data)
-        })
-    }
-    getRoles()
-
-    const getSkills = (id) => {
-      fetch(
-        "https://d14f98cedwjzih.cloudfront.net/executor/skill?executorId=" + id
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setSkills(data)
-        })
-    }
-    getSkills(id)
+    fetchExecutor(id)
   }, [id])
 
   const handleChange = (field, newVal) => {
@@ -95,7 +84,7 @@ function Element() {
 
       <List
         dataSource={skills}
-        renderItem={(item) => <List.Item>{item}</List.Item>}
+        renderItem={(item) => <List.Item>{item.id}</List.Item>}
       ></List>
     </div>
   )
