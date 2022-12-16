@@ -1,8 +1,8 @@
-import { Route, Routes, useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Button, Form, Input, Slider } from "antd"
 
-function Element() {
+function Role() {
   let { id } = useParams()
 
   const [role, setRole] = useState([])
@@ -38,7 +38,10 @@ function Element() {
         role.id,
       options
     )
-    navigate("/roles")
+
+    setTimeout(() => {
+      navigate("/roles")
+    }, 500)
   }
 
   return (
@@ -63,14 +66,6 @@ function Element() {
         </Button>
       </Form.Item>
     </Form>
-  )
-}
-
-function Role() {
-  return (
-    <Routes>
-      <Route path="/role/:id" element={<Element />}></Route>
-    </Routes>
   )
 }
 

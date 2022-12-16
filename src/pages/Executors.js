@@ -7,7 +7,7 @@ function Executors() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const getExecutors = () => {
+    const getExecutors = async () => {
       fetch("https://d14f98cedwjzih.cloudfront.net/executor/")
         .then((res) => res.json())
         .then((data) => {

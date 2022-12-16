@@ -1,4 +1,4 @@
-import { useNavigate, Route, Routes } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { List } from "antd"
 
@@ -18,27 +18,18 @@ function Roles() {
   }, [])
 
   return (
-    <Routes>
-      <Route
-        path="/roles"
-        element={
-          <div>
-            <List
-              dataSource={roles}
-              renderItem={(item) => (
-                <List.Item
-                  onClick={() => {
-                    navigate("/role/" + item.id)
-                  }}
-                >
-                  {item.name}
-                </List.Item>
-              )}
-            />
-          </div>
-        }
-      ></Route>
-    </Routes>
+    <List
+      dataSource={roles}
+      renderItem={(item) => (
+        <List.Item
+          onClick={() => {
+            navigate("/role/" + item.id)
+          }}
+        >
+          {item.name}
+        </List.Item>
+      )}
+    />
   )
 }
 

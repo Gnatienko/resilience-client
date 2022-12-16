@@ -32,12 +32,12 @@ function App() {
           <Menu.Item key="/executors/add">Add executor</Menu.Item>
         </SubMenu>
       </Menu>
-      <Roles />
-
-      <Role />
-      <Executor />
 
       <Routes>
+        <Route path="/role" element={<Role />}></Route>
+        <Route path="/role/:id" element={<Role />}></Route>
+
+        <Route path="/roles" key="/roles" element={<Roles />}></Route>
         <Route path="/roles/add" element={<AddRole />}></Route>
         <Route
           path="/executors"
@@ -45,6 +45,7 @@ function App() {
           element={<Executors />}
         ></Route>
         <Route path="/executors/add" element={<AddExecutor />}></Route>
+        <Route path="/executor/:id" element={<Executor />}></Route>
       </Routes>
     </div>
   )

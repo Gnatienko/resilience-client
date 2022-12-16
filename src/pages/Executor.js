@@ -1,8 +1,8 @@
-import { Route, Routes, useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Button, Form, Input, List, Select, Slider } from "antd"
 
-function Element() {
+function Executor() {
   let { id } = useParams()
   const [executor, setExecutor] = useState([])
   const [roles, setRoles] = useState([])
@@ -55,7 +55,9 @@ function Element() {
         executor.id,
       options
     )
-    navigate("/executors")
+    setTimeout(() => {
+      navigate("/executors")
+    }, 500)
   }
 
   const handleChangeRoleSelect = (name) => {
@@ -137,14 +139,6 @@ function Element() {
         )}
       ></List>
     </div>
-  )
-}
-
-function Executor() {
-  return (
-    <Routes>
-      <Route path="/executor/:id" element={<Element />}></Route>
-    </Routes>
   )
 }
 
