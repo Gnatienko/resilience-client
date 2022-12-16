@@ -39,7 +39,11 @@ function App() {
 
       <Routes>
         <Route path="/roles/add" element={<AddRole />}></Route>
-        <Route path="/executors" element={<Executors />}></Route>
+        <Route
+          path="/executors"
+          key="/executors"
+          element={<Executors />}
+        ></Route>
         <Route path="/executors/add" element={<AddExecutor />}></Route>
       </Routes>
     </div>
