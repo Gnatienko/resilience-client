@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input, List, Select, Slider } from "antd"
+import { Button, Form, Input, List, Select, Slider, Checkbox } from "antd"
 
 function Executor() {
   let { id } = useParams()
@@ -83,6 +83,20 @@ function Executor() {
     window.location.reload()
   }
 
+  const setDuty = async (roleId, isDuty) => {
+    const options = { method: "PUT" }
+    await fetch(
+      "https://d14f98cedwjzih.cloudfront.net/executor-role/duty/?executorId=" +
+        executor.id +
+        "&roleId=" +
+        roleId +
+        "&isDuty=" +
+        !isDuty,
+      options
+    )
+    window.location.reload()
+  }
+
   return (
     <div>
       <Form>
@@ -132,7 +146,14 @@ function Executor() {
               handleItemClick(item.name, item.qualification)
             }}
           >
-            {item.name}
+            <Checkbox
+              checked={item.isDuty}
+              onClick={() => {
+                setDuty(item.roleId, item.isDuty)
+              }}
+            >
+              {item.name}
+            </Checkbox>
           </List.Item>
         )}
       ></List>
