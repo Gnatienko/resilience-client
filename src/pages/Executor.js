@@ -69,12 +69,9 @@ function Executor() {
     setQualification(qualification)
   }
 
-  const addSkill = () => {
-    console.log(selectedRole)
-    console.log(qualification)
-
+  const addSkill = async () => {
     const options = { method: "PUT" }
-    fetch(
+    await fetch(
       "https://d14f98cedwjzih.cloudfront.net/executor/skill?executorId=" +
         executor.id +
         "&roleId=" +
@@ -83,6 +80,7 @@ function Executor() {
         qualification,
       options
     )
+    window.location.reload()
   }
 
   return (

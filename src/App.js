@@ -45,7 +45,11 @@ function App() {
           element={<Executors />}
         ></Route>
         <Route path="/executors/add" element={<AddExecutor />}></Route>
-        <Route path="/executor/:id" element={<Executor />}></Route>
+        <Route
+          path="/executor/:id"
+          key="/executor/:id"
+          element={<Executor />}
+        ></Route>
       </Routes>
     </div>
   )
