@@ -5,6 +5,8 @@ import { useState } from "react"
 function AddRole() {
   const [name, setName] = useState("")
   const [weight, setWeight] = useState(5)
+  const [requiredSkillHours, setRequiredSkillHours] = useState(5)
+
   const navigate = useNavigate()
 
   const Post = () => {
@@ -13,7 +15,9 @@ function AddRole() {
       "https://d14f98cedwjzih.cloudfront.net/role?name=" +
         name +
         "&weight=" +
-        weight,
+        weight +
+        "&requiredSkillHours=" +
+        requiredSkillHours,
       options
     )
     navigate("/roles")
@@ -24,6 +28,9 @@ function AddRole() {
       <Form>
         <Form.Item label="Name">
           <Input onChange={(e) => setName(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Required Skill Hours">
+          <Input onChange={(e) => setRequiredSkillHours(e.target.value)} />
         </Form.Item>
         <Form.Item label="Weight">
           <Slider

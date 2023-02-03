@@ -4,12 +4,17 @@ import { useState } from "react"
 
 function AddExecutor() {
   const [name, setName] = useState("")
+  const [salary, setSalary] = useState("")
+
   const navigate = useNavigate()
 
   const Post = () => {
     const options = { method: "POST" }
     fetch(
-      "https://d14f98cedwjzih.cloudfront.net/executor?name=" + name,
+      "https://d14f98cedwjzih.cloudfront.net/executor?name=" +
+        name +
+        "&salary=" +
+        salary,
       options
     )
 
@@ -21,6 +26,9 @@ function AddExecutor() {
       <Form>
         <Form.Item label="Name">
           <Input onChange={(e) => setName(e.target.value)} />
+        </Form.Item>
+        <Form.Item label="Salary">
+          <Input onChange={(e) => setSalary(e.target.value)} />
         </Form.Item>
 
         <Form.Item>
