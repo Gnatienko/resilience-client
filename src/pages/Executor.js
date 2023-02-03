@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Button, Form, Input, List, Select, Slider, Checkbox, Card } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
@@ -11,8 +11,6 @@ function Executor() {
   const [selectedRole, setSelectedRole] = useState({})
 
   const [qualification, setQualification] = useState(5)
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchExecutor = async (id) => {
@@ -47,18 +45,17 @@ function Executor() {
     })
   }
 
-  const SaveChanges = () => {
+  const SaveChanges = async () => {
     const options = { method: "PUT" }
-    fetch(
+    await fetch(
       "https://d14f98cedwjzih.cloudfront.net/executor?name=" +
         executor.name +
         "&id=" +
-        executor.id,
+        executor.id +
+        "&salary=" +
+        executor.salary,
       options
     )
-    setTimeout(() => {
-      navigate("/executors")
-    }, 500)
   }
 
   const handleChangeRoleSelect = (name) => {
@@ -124,12 +121,20 @@ function Executor() {
       <Card style={{ margin: "1rem" }}>
         <h4 children="Info"></h4>
         <Form>
+          <Form.Item label={"ID"}> {executor.id} </Form.Item>
           <Form.Item label="Name">
             <Input
               value={executor.name}
               onChange={(e) => handleChange("name", e.target.value)}
             ></Input>
           </Form.Item>
+          <Form.Item label={"Salary"}>
+            <Input
+              value={executor.salary}
+              onChange={(e) => handleChange("salary", e.target.value)}
+            ></Input>
+          </Form.Item>
+
           <Form.Item>
             <Button onClick={SaveChanges} type="primary">
               Save changes

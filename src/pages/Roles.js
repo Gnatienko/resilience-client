@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { List } from "antd"
+import { RightOutlined } from "@ant-design/icons"
 
 function Roles() {
   const [roles, setRoles] = useState([])
@@ -19,6 +20,7 @@ function Roles() {
 
   return (
     <List
+      style={{ width: "20rem" }}
       dataSource={roles}
       renderItem={(item) => (
         <List.Item
@@ -26,7 +28,8 @@ function Roles() {
             navigate("/role/" + item.id)
           }}
         >
-          {item.name}
+          <List.Item.Meta title={item.name} />
+          <RightOutlined />
         </List.Item>
       )}
     />

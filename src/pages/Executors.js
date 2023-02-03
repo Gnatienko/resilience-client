@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { List } from "antd"
+import { RightOutlined } from "@ant-design/icons"
 
 function Executors() {
   const [executors, setExecutors] = useState([])
@@ -20,6 +21,7 @@ function Executors() {
   return (
     <div>
       <List
+        style={{ width: "20rem" }}
         dataSource={executors}
         renderItem={(item) => (
           <List.Item
@@ -27,7 +29,8 @@ function Executors() {
               navigate("/executor/" + item.id)
             }}
           >
-            {item.name}
+            <List.Item.Meta title={item.name} />
+            <RightOutlined />
           </List.Item>
         )}
       />
