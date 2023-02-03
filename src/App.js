@@ -6,6 +6,7 @@ import AddRole from "./pages/AddRole"
 import Role from "./pages/Role"
 import Executor from "./pages/Executor"
 import AddExecutor from "./pages/AddExecutor"
+import Home from "./pages/Home"
 
 import "./App.css"
 
@@ -23,6 +24,7 @@ function App() {
           navigate(key)
         }}
       >
+        <Menu.Item key="/">Home</Menu.Item>
         <SubMenu key="roles" title={<span>Roles</span>}>
           <Menu.Item key="/roles">All roles</Menu.Item>
           <Menu.Item key="/roles/add">Add role</Menu.Item>
@@ -34,8 +36,8 @@ function App() {
       </Menu>
 
       <Routes>
-        <Route path="/role" element={<Role />}></Route>
         <Route path="/role/:id" element={<Role />}></Route>
+        <Route path="/" element={<Home />}></Route>
 
         <Route path="/roles" key="/roles" element={<Roles />}></Route>
         <Route path="/roles/add" element={<AddRole />}></Route>
