@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input, Slider, Card, Select, List } from "antd"
+import { Button, Form, Input, Slider, Card, Select } from "antd"
 
 function Role() {
   let { id } = useParams()
   const [role, setRole] = useState([])
   const [executors, setExecutors] = useState([])
   const [selectedExecutor, setSelectedExecutor] = useState({})
-  // todo - add skill carrier to role. First need to add it on back
+  // todo - add skill carriers to role. First need to add it on back
 
   useEffect(() => {
     const fetchAll = async (id) => {
@@ -49,10 +49,10 @@ function Role() {
   }
 
   return (
-    <div>
+    <div style={{ width: "30rem" }}>
       <Card style={{ margin: "1rem" }}>
         <h4 children="Info"></h4>
-        <Form style={{ width: "20rem" }}>
+        <Form>
           <Form.Item label={"ID"}> {role.id} </Form.Item>
 
           <Form.Item label="Required Skill Hours">
@@ -88,7 +88,6 @@ function Role() {
         <Select
           showSearch
           value={selectedExecutor.name}
-          style={{ width: "30rem" }}
           placeholder="Chose the executor"
           onChange={(e) => handleChangeExecutorSelect(e)}
           options={executors.map((e) => {

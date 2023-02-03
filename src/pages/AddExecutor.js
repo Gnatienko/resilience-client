@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Button, Form, Input } from "antd"
+import { Button, Form, Input, Card } from "antd"
 import { useState } from "react"
 
 function AddExecutor() {
@@ -17,8 +17,8 @@ function AddExecutor() {
   }
 
   return (
-    <>
-      <Form style={{ margin: "2rem" }}>
+    <Card style={{ margin: "1rem", width: "30rem" }}>
+      <Form>
         <Form.Item label="Name">
           <Input onChange={(e) => setName(e.target.value)} />
         </Form.Item>
@@ -29,7 +29,7 @@ function AddExecutor() {
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </Card>
   )
 }
 

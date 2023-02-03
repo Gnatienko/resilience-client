@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Button, Form, Input, Slider } from "antd"
+import { Button, Form, Input, Slider, Card } from "antd"
 import { useState } from "react"
 
 function AddRole() {
@@ -20,8 +20,8 @@ function AddRole() {
   }
 
   return (
-    <>
-      <Form style={{ margin: "2rem" }}>
+    <Card style={{ margin: "1rem", width: "30rem" }}>
+      <Form>
         <Form.Item label="Name">
           <Input onChange={(e) => setName(e.target.value)} />
         </Form.Item>
@@ -31,7 +31,6 @@ function AddRole() {
             min={0}
             max={10}
             onChange={(e) => setWeight(e)}
-            style={{ width: "30rem" }}
           />
         </Form.Item>
         <Form.Item>
@@ -40,7 +39,7 @@ function AddRole() {
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </Card>
   )
 }
 

@@ -117,7 +117,7 @@ function Executor() {
   }
 
   return (
-    <div>
+    <div style={{ width: "30rem" }}>
       <Card style={{ margin: "1rem" }}>
         <h4 children="Info"></h4>
         <Form>
@@ -146,9 +146,9 @@ function Executor() {
         <h4 children="Skills"></h4>
         <Select
           showSearch
+          style={{ width: "100%" }}
           value={selectedRole.name}
-          style={{ width: "30rem" }}
-          placeholder="Chose the function"
+          placeholder="Chose a function to set skill"
           onChange={(e) => handleChangeRoleSelect(e)}
           options={roles.map((e) => {
             return {
