@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Button, Form, Input, List, Select, Slider, Checkbox } from "antd"
+import { DeleteOutlined } from "@ant-design/icons"
 
 function Executor() {
   let { id } = useParams()
@@ -72,12 +73,33 @@ function Executor() {
   const addSkill = async () => {
     const options = { method: "PUT" }
     await fetch(
-      "https://d14f98cedwjzih.cloudfront.net/executor/skill?executorId=" +
+      "https://d14f98cedwjzih.cloudfront.net/executor-role/skill?executorId=" +
         executor.id +
         "&roleId=" +
         selectedRole.id +
         "&qualification=" +
         qualification,
+      options
+    )
+    window.location.reload()
+  }
+
+  const removeSkill = async (roleId) => {
+    const options = { method: "PUT" }
+    await fetch(
+      "https://d14f98cedwjzih.cloudfront.net/executor-role/skill?executorId=" +
+        executor.id +
+        "&roleId=" +
+        roleId +
+        "&qualification=0",
+      options
+    )
+    await fetch(
+      "https://d14f98cedwjzih.cloudfront.net/executor-role/duty/?executorId=" +
+        executor.id +
+        "&roleId=" +
+        roleId +
+        "&isDuty=false",
       options
     )
     window.location.reload()
@@ -154,6 +176,11 @@ function Executor() {
             >
               {item.name}
             </Checkbox>
+            <DeleteOutlined
+              onClick={() => {
+                removeSkill(item.roleId)
+              }}
+            />
           </List.Item>
         )}
       ></List>
