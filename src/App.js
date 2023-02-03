@@ -24,8 +24,8 @@ function App() {
         }}
       >
         <SubMenu key="roles" title={<span>Roles</span>}>
-          <Menu.Item key="/roles/add">Add role</Menu.Item>
           <Menu.Item key="/roles">All roles</Menu.Item>
+          <Menu.Item key="/roles/add">Add role</Menu.Item>
         </SubMenu>
         <SubMenu key="executors" title={<span>Executors</span>}>
           <Menu.Item key="/executors">All executors</Menu.Item>
