@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input, List, Select, Slider, Checkbox } from "antd"
+import { Button, Form, Input, List, Select, Slider, Checkbox, Card } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
 
 function Executor() {
@@ -121,69 +121,74 @@ function Executor() {
 
   return (
     <div>
-      <Form>
-        <Form.Item label="Name">
-          <Input
-            value={executor.name}
-            onChange={(e) => handleChange("name", e.target.value)}
-          ></Input>
-        </Form.Item>
-        <Form.Item>
-          <Button onClick={SaveChanges} type="primary">
-            Save changes
-          </Button>
-        </Form.Item>
-      </Form>
+      <Card style={{ margin: "1rem" }}>
+        <h4 children="Info"></h4>
+        <Form>
+          <Form.Item label="Name">
+            <Input
+              value={executor.name}
+              onChange={(e) => handleChange("name", e.target.value)}
+            ></Input>
+          </Form.Item>
+          <Form.Item>
+            <Button onClick={SaveChanges} type="primary">
+              Save changes
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
+      <Card style={{ margin: "1rem" }}>
+        <h4 children="Skills"></h4>
+        <Select
+          showSearch
+          value={selectedRole.name}
+          style={{ width: "30rem" }}
+          placeholder="Chose the function"
+          onChange={(e) => handleChangeRoleSelect(e)}
+          options={roles.map((e) => {
+            return {
+              id: e.id,
+              value: e.name,
+              title: e.weight,
+            }
+          })}
+        />
 
-      <Select
-        showSearch
-        value={selectedRole.name}
-        style={{ width: "30rem" }}
-        placeholder="Chose the function"
-        onChange={(e) => handleChangeRoleSelect(e)}
-        options={roles.map((e) => {
-          return {
-            id: e.id,
-            value: e.name,
-            title: e.weight,
-          }
-        })}
-      />
+        <Slider
+          min={0}
+          max={10}
+          value={qualification}
+          onChange={(e) => setQualification(e)}
+        ></Slider>
+        <Button onClick={addSkill} type="primary">
+          Add skill
+        </Button>
 
-      <Slider
-        min={0}
-        max={10}
-        value={qualification}
-        onChange={(e) => setQualification(e)}
-      ></Slider>
-      <Button onClick={addSkill} type="primary">
-        Add skill
-      </Button>
-
-      <List
-        dataSource={skills}
-        renderItem={(item) => (
-          <List.Item
-            onClick={() => {
-              handleItemClick(item.name, item.qualification)
-            }}
-          >
-            <Checkbox
-              checked={item.isDuty}
+        <List
+          dataSource={skills}
+          renderItem={(item) => (
+            <List.Item
               onClick={() => {
-                setDuty(item.roleId, item.isDuty)
+                handleItemClick(item.name, item.qualification)
               }}
             >
-              {item.name}
-            </Checkbox>
-            <DeleteOutlined
-              onClick={() => {
-                removeSkill(item.roleId)
-              }}
-            />
-          </List.Item>
-        )}
-      ></List>
+              <Checkbox
+                checked={item.isDuty}
+                onClick={() => {
+                  setDuty(item.roleId, item.isDuty)
+                }}
+              >
+                {item.name}
+              </Checkbox>
+              <DeleteOutlined
+                onClick={() => {
+                  removeSkill(item.roleId)
+                }}
+              />
+            </List.Item>
+          )}
+        ></List>
+      </Card>
     </div>
   )
 }
