@@ -177,14 +177,15 @@ function Executor() {
                 handleItemClick(item.name, item.qualification)
               }}
             >
-              <Checkbox
-                checked={item.isDuty}
-                onClick={() => {
-                  setDuty(item.roleId, item.isDuty)
-                }}
-              >
-                {item.name}
-              </Checkbox>
+              <div>
+                <Checkbox
+                  checked={item.isDuty}
+                  onClick={() => {
+                    setDuty(item.roleId, item.isDuty)
+                  }}
+                ></Checkbox>
+                {" " + item.name}
+              </div>
               <DeleteOutlined
                 onClick={() => {
                   removeSkill(item.roleId)

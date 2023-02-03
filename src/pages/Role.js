@@ -1,13 +1,11 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input, Slider } from "antd"
+import { Button, Form, Input, Slider, Card } from "antd"
 
 function Role() {
   let { id } = useParams()
 
   const [role, setRole] = useState([])
-
-  const navigate = useNavigate()
 
   useEffect(() => {
     const getRole = (id) => {
@@ -27,7 +25,7 @@ function Role() {
     })
   }
 
-  const Submit = () => {
+  const SaveChanges = () => {
     const options = { method: "PUT" }
     fetch(
       "https://d14f98cedwjzih.cloudfront.net/role?name=" +
@@ -38,34 +36,33 @@ function Role() {
         role.id,
       options
     )
-
-    setTimeout(() => {
-      navigate("/roles")
-    }, 500)
   }
 
   return (
-    <Form>
-      <Form.Item label="Name">
-        <Input
-          value={role.name}
-          onChange={(e) => handleChange("name", e.target.value)}
-        ></Input>
-      </Form.Item>
-      <Form.Item label="Weight">
-        <Slider
-          min={0}
-          max={10}
-          value={role.weight}
-          onChange={(e) => handleChange("weight", e)}
-        ></Slider>
-      </Form.Item>
-      <Form.Item>
-        <Button onClick={Submit} type="primary">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <Card style={{ margin: "1rem" }}>
+      <h4 children="Info"></h4>
+      <Form style={{ width: "20rem" }}>
+        <Form.Item label="Name">
+          <Input
+            value={role.name}
+            onChange={(e) => handleChange("name", e.target.value)}
+          ></Input>
+        </Form.Item>
+        <Form.Item label="Weight">
+          <Slider
+            min={0}
+            max={10}
+            value={role.weight}
+            onChange={(e) => handleChange("weight", e)}
+          ></Slider>
+        </Form.Item>
+        <Form.Item>
+          <Button onClick={SaveChanges} type="primary">
+            Save changes
+          </Button>
+        </Form.Item>
+      </Form>
+    </Card>
   )
 }
 
