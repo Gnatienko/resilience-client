@@ -8,6 +8,7 @@ function Role() {
   const [executors, setExecutors] = useState([])
   const [selectedExecutor, setSelectedExecutor] = useState({})
   const [skillCarriers, setSkillCarriers] = useState([])
+  const [qualification, setQualification] = useState(5)
 
   useEffect(() => {
     const fetchAll = async (id) => {
@@ -45,6 +46,10 @@ function Role() {
   const handleChangeExecutorSelect = (name) => {
     setSelectedExecutor(executors.find((x) => x.name === name))
   }
+  const handleItemClick = (name, qualification) => {
+    setSelectedExecutor(executors.find((x) => x.name === name))
+    setQualification(qualification)
+  }
 
   const SaveChanges = () => {
     const options = { method: "PUT" }
@@ -59,6 +64,20 @@ function Role() {
         role.requiredSkillHours,
       options
     )
+  }
+
+  const addSkill = async () => {
+    const options = { method: "PUT" }
+    await fetch(
+      "https://d14f98cedwjzih.cloudfront.net/executor-role/skill?executorId=" +
+        selectedExecutor.id +
+        "&roleId=" +
+        role.id +
+        "&qualification=" +
+        qualification,
+      options
+    )
+    window.location.reload()
   }
 
   return (
@@ -100,21 +119,37 @@ function Role() {
       <Card style={{ margin: "1rem" }}>
         <Select
           showSearch
+          style={{ width: "100%" }}
           value={selectedExecutor.name}
           placeholder="Chose the executor"
           onChange={(e) => handleChangeExecutorSelect(e)}
           options={executors.map((e) => {
             return {
-              id: e.id,
               value: e.name,
-              title: e.weight,
             }
           })}
         />
+        <Slider
+          min={0}
+          max={10}
+          value={qualification}
+          onChange={(e) => setQualification(e)}
+        ></Slider>
+        <Button onClick={addSkill} type="primary">
+          Add skilled executor
+        </Button>
 
         <List
           dataSource={skillCarriers}
-          renderItem={(item) => <List.Item>{item.name}</List.Item>}
+          renderItem={(item) => (
+            <List.Item
+              onClick={() => {
+                handleItemClick(item.name, item.qualification)
+              }}
+            >
+              {item.name}
+            </List.Item>
+          )}
         ></List>
       </Card>
     </div>

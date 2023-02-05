@@ -173,9 +173,7 @@ function Executor() {
           onChange={(e) => handleChangeRoleSelect(e)}
           options={roles.map((e) => {
             return {
-              id: e.id,
               value: e.name,
-              title: e.weight,
             }
           })}
         />
