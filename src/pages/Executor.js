@@ -144,16 +144,23 @@ function Executor() {
               onChange={(e) => handleChange("salary", e.target.value)}
             ></Input>
           </Form.Item>
-
-          <Form.Item>
-            <Button onClick={SaveChanges} type="primary">
-              Save changes
-            </Button>
-
-            <Button danger onClick={Delete}>
-              Delete
-            </Button>
-          </Form.Item>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Form.Item>
+              <Button onClick={SaveChanges} type="primary">
+                Save changes
+              </Button>
+            </Form.Item>
+            <Form.Item>
+              <Button danger onClick={Delete}>
+                Delete
+              </Button>
+            </Form.Item>
+          </div>
         </Form>
       </Card>
       <Card style={{ margin: "1rem" }}>
