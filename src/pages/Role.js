@@ -9,6 +9,8 @@ function Role() {
   const [selectedExecutor, setSelectedExecutor] = useState({})
   const [skillCarriers, setSkillCarriers] = useState([])
   const [qualification, setQualification] = useState(5)
+  const [hoursPerWeek, setHoursPerWeek] = useState(5)
+  const [execution, setExecution] = useState(5) //todo
 
   useEffect(() => {
     const fetchAll = async (id) => {
@@ -22,15 +24,18 @@ function Role() {
       const data = await Promise.all(res.map((r) => r.json()))
       setRole(data[0])
       setExecutors(data[1])
+      const skillCarriers = data[2].map((e) => {
+        return {
+          ...e,
+          name: data[1].find((x) => x.id === e.executorId).name,
+        }
+      })
+      setSkillCarriers(skillCarriers)
+      const execution = skillCarriers.reduce((accumulator, object) => {
+        return accumulator + object.hoursPerWeek * object.qualification
+      }, 0)
 
-      setSkillCarriers(
-        data[2].map((e) => {
-          return {
-            ...e,
-            name: data[1].find((x) => x.id === e.executorId).name,
-          }
-        })
-      )
+      setExecution(execution)
     }
 
     fetchAll(id)
@@ -74,7 +79,9 @@ function Role() {
         "&roleId=" +
         role.id +
         "&qualification=" +
-        qualification,
+        qualification +
+        "&hoursPerWeek=" +
+        hoursPerWeek,
       options
     )
     window.location.reload()
@@ -87,7 +94,7 @@ function Role() {
         <Form>
           <Form.Item label={"ID"}> {role.id} </Form.Item>
 
-          <Form.Item label="Required Skill Hours">
+          <Form.Item label="Required Skill Hours Per Week">
             <Input
               value={role.requiredSkillHours}
               onChange={(e) =>
@@ -95,6 +102,10 @@ function Role() {
               }
             ></Input>
           </Form.Item>
+          <Form.Item label={"Executed Skill Hours Per Week"}>
+            {execution}{" "}
+          </Form.Item>
+
           <Form.Item label="Name">
             <Input
               value={role.name}
@@ -135,10 +146,16 @@ function Role() {
           value={qualification}
           onChange={(e) => setQualification(e)}
         ></Slider>
+        Hours per week:
+        <Slider
+          min={0}
+          max={40}
+          value={hoursPerWeek}
+          onChange={(e) => setHoursPerWeek(e)}
+        ></Slider>
         <Button onClick={addSkill} type="primary">
           Add skilled executor
         </Button>
-
         <List
           dataSource={skillCarriers}
           renderItem={(item) => (

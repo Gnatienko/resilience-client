@@ -36,10 +36,12 @@ function Executor() {
         }
       })
       setSkills(skills)
-      const sumHoursPerWeek = skills.reduce((accumulator, object) => {
+
+      const occupation = skills.reduce((accumulator, object) => {
         return accumulator + object.hoursPerWeek
       }, 0)
-      setOccupation(sumHoursPerWeek)
+
+      setOccupation(occupation)
     }
 
     fetchExecutor(id)
