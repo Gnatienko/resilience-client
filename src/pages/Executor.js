@@ -12,6 +12,8 @@ function Executor() {
   const [selectedRole, setSelectedRole] = useState({})
   const [qualification, setQualification] = useState(5)
   const [hoursPerWeek, setHoursPerWeek] = useState(5)
+  const [occupation, setOccupation] = useState(5)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -27,14 +29,17 @@ function Executor() {
       const data = await Promise.all(res.map((r) => r.json()))
       setExecutor(data[0])
       setRoles(data[1])
-      setSkills(
-        data[2].map((e) => {
-          return {
-            ...e,
-            name: data[1].find((x) => x.id === e.roleId).name,
-          }
-        })
-      )
+      const skills = data[2].map((e) => {
+        return {
+          ...e,
+          name: data[1].find((x) => x.id === e.roleId).name,
+        }
+      })
+      setSkills(skills)
+      const sumHoursPerWeek = skills.reduce((accumulator, object) => {
+        return accumulator + object.hoursPerWeek
+      }, 0)
+      setOccupation(sumHoursPerWeek)
     }
 
     fetchExecutor(id)
@@ -148,6 +153,11 @@ function Executor() {
               onChange={(e) => handleChange("salary", e.target.value)}
             ></Input>
           </Form.Item>
+          <Form.Item label={"Occupation hours per week"}>
+            {" "}
+            {occupation}
+          </Form.Item>
+
           <div
             style={{
               display: "flex",
