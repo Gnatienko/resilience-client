@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Button, Form, Input, List, Select, Slider, Checkbox, Card } from "antd"
 import { DeleteOutlined } from "@ant-design/icons"
+import { useNavigate } from "react-router-dom"
 
 function Executor() {
   let { id } = useParams()
@@ -9,8 +10,8 @@ function Executor() {
   const [roles, setRoles] = useState([])
   const [skills, setSkills] = useState([])
   const [selectedRole, setSelectedRole] = useState({})
-
   const [qualification, setQualification] = useState(5)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchExecutor = async (id) => {
@@ -56,6 +57,15 @@ function Executor() {
         executor.salary,
       options
     )
+  }
+
+  const Delete = async () => {
+    const options = { method: "DELETE" }
+    await fetch(
+      "https://d14f98cedwjzih.cloudfront.net/executor?id=" + executor.id,
+      options
+    )
+    navigate("/executors/")
   }
 
   const handleChangeRoleSelect = (name) => {
@@ -138,6 +148,9 @@ function Executor() {
           <Form.Item>
             <Button onClick={SaveChanges} type="primary">
               Save changes
+            </Button>
+            <Button danger onClick={Delete}>
+              Delete
             </Button>
           </Form.Item>
         </Form>
