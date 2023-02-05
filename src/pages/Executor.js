@@ -149,6 +149,7 @@ function Executor() {
             <Button onClick={SaveChanges} type="primary">
               Save changes
             </Button>
+
             <Button danger onClick={Delete}>
               Delete
             </Button>
