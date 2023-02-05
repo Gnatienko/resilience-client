@@ -51,9 +51,10 @@ function Role() {
   const handleChangeExecutorSelect = (name) => {
     setSelectedExecutor(executors.find((x) => x.name === name))
   }
-  const handleItemClick = (name, qualification) => {
+  const handleItemClick = (name, qualification, hoursPerWeek) => {
     setSelectedExecutor(executors.find((x) => x.name === name))
     setQualification(qualification)
+    setHoursPerWeek(hoursPerWeek)
   }
 
   const SaveChanges = () => {
@@ -161,7 +162,11 @@ function Role() {
           renderItem={(item) => (
             <List.Item
               onClick={() => {
-                handleItemClick(item.name, item.qualification)
+                handleItemClick(
+                  item.name,
+                  item.qualification,
+                  item.hoursPerWeek
+                )
               }}
             >
               {item.name}
