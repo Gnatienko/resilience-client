@@ -11,6 +11,7 @@ function Executor() {
   const [skills, setSkills] = useState([])
   const [selectedRole, setSelectedRole] = useState({})
   const [qualification, setQualification] = useState(5)
+  const [hoursPerWeek, setHoursPerWeek] = useState(5)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -72,9 +73,10 @@ function Executor() {
     setSelectedRole(roles.find((x) => x.name === name))
   }
 
-  const handleItemClick = (name, qualification) => {
+  const handleItemClick = (name, qualification, hoursPerWeek) => {
     setSelectedRole(roles.find((x) => x.name === name))
     setQualification(qualification)
+    setHoursPerWeek(hoursPerWeek)
   }
 
   const addSkill = async () => {
@@ -85,7 +87,9 @@ function Executor() {
         "&roleId=" +
         selectedRole.id +
         "&qualification=" +
-        qualification,
+        qualification +
+        "&hoursPerWeek=" +
+        hoursPerWeek,
       options
     )
     window.location.reload()
@@ -167,7 +171,7 @@ function Executor() {
         <h4 children="Skills"></h4>
         <Select
           showSearch
-          style={{ width: "100%" }}
+          style={{ width: "100%", marginBottom: "1rem" }}
           value={selectedRole.name}
           placeholder="Chose a function to set skill"
           onChange={(e) => handleChangeRoleSelect(e)}
@@ -177,23 +181,33 @@ function Executor() {
             }
           })}
         />
-
+        Qualification:
         <Slider
           min={0}
           max={10}
           value={qualification}
           onChange={(e) => setQualification(e)}
         ></Slider>
+        Hours per week:
+        <Slider
+          min={0}
+          max={40}
+          value={hoursPerWeek}
+          onChange={(e) => setHoursPerWeek(e)}
+        ></Slider>
         <Button onClick={addSkill} type="primary">
           Add skill
         </Button>
-
         <List
           dataSource={skills}
           renderItem={(item) => (
             <List.Item
               onClick={() => {
-                handleItemClick(item.name, item.qualification)
+                handleItemClick(
+                  item.name,
+                  item.qualification,
+                  item.hoursPerWeek
+                )
               }}
             >
               <div>
