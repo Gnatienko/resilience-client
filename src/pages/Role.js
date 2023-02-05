@@ -1,24 +1,37 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input, Slider, Card, Select } from "antd"
+import { Button, Form, Input, Slider, Card, Select, List } from "antd"
 
 function Role() {
   let { id } = useParams()
   const [role, setRole] = useState([])
   const [executors, setExecutors] = useState([])
   const [selectedExecutor, setSelectedExecutor] = useState({})
-  // todo - add skill carriers to role. First need to add it on back
+  const [skillCarriers, setSkillCarriers] = useState([])
 
   useEffect(() => {
     const fetchAll = async (id) => {
       const res = await Promise.all([
         fetch("https://d14f98cedwjzih.cloudfront.net/role/?id=" + id),
         fetch("https://d14f98cedwjzih.cloudfront.net/executor/"),
+        fetch(
+          "https://d14f98cedwjzih.cloudfront.net/executor-role/?roleId=" + id
+        ),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
       setRole(data[0])
       setExecutors(data[1])
+
+      setSkillCarriers(
+        data[2].map((e) => {
+          return {
+            ...e,
+            name: data[1].find((x) => x.id === e.executorId).name,
+          }
+        })
+      )
     }
+
     fetchAll(id)
   }, [id])
 
@@ -98,6 +111,11 @@ function Role() {
             }
           })}
         />
+
+        <List
+          dataSource={skillCarriers}
+          renderItem={(item) => <List.Item>{item.name}</List.Item>}
+        ></List>
       </Card>
     </div>
   )
