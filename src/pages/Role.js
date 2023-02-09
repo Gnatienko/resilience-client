@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Button, Form, Input, Slider, Card, Select, List } from "antd"
+import { useNavigate } from "react-router-dom"
 
 function Role() {
   let { id } = useParams()
@@ -10,7 +11,8 @@ function Role() {
   const [skillCarriers, setSkillCarriers] = useState([])
   const [qualification, setQualification] = useState(5)
   const [hoursPerWeek, setHoursPerWeek] = useState(5)
-  const [execution, setExecution] = useState(5) //todo
+  const [execution, setExecution] = useState(5)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchAll = async (id) => {
@@ -88,6 +90,15 @@ function Role() {
     window.location.reload()
   }
 
+  const Delete = async () => {
+    const options = { method: "DELETE" }
+    await fetch(
+      "https://d14f98cedwjzih.cloudfront.net/role?id=" + role.id,
+      options
+    )
+    navigate("/roles/")
+  }
+
   return (
     <div style={{ width: "30rem" }}>
       <Card style={{ margin: "1rem" }}>
@@ -121,11 +132,24 @@ function Role() {
               onChange={(e) => handleChange("weight", e)}
             ></Slider>
           </Form.Item>
-          <Form.Item>
-            <Button onClick={SaveChanges} type="primary">
-              Save changes
-            </Button>
-          </Form.Item>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <Form.Item>
+              <Button onClick={SaveChanges} type="primary">
+                Save changes
+              </Button>
+            </Form.Item>
+
+            <Form.Item>
+              <Button danger onClick={Delete}>
+                Delete
+              </Button>
+            </Form.Item>
+          </div>
         </Form>
       </Card>
       <Card style={{ margin: "1rem" }}>
