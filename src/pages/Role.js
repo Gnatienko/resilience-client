@@ -207,7 +207,7 @@ function Role() {
                 )
               }}
             >
-              {item.name}{" "}
+              <div>{item.name}</div>
               <DeleteOutlined
                 onClick={() => {
                   removeSkill(item.executorId)
