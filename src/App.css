@@ -5,3 +5,7 @@ form {
 input {
     width: 30rem;
 }
+
+.ant-progress-bg {
+  height: 2px !important;
+}
