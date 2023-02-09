@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Button, Form, Input, Slider, Card, Select, List } from "antd"
 import { useNavigate } from "react-router-dom"
+import { DeleteOutlined } from "@ant-design/icons"
 
 function Role() {
   let { id } = useParams()
@@ -99,6 +100,19 @@ function Role() {
     navigate("/roles/")
   }
 
+  const removeSkill = async (executorId) => {
+    const options = { method: "DELETE" }
+    await fetch(
+      "https://d14f98cedwjzih.cloudfront.net/executor-role?roleId=" +
+        role.id +
+        "&executorId=" +
+        executorId,
+      options
+    )
+
+    window.location.reload()
+  }
+
   return (
     <div style={{ width: "30rem" }}>
       <Card style={{ margin: "1rem" }}>
@@ -193,7 +207,12 @@ function Role() {
                 )
               }}
             >
-              {item.name}
+              {item.name}{" "}
+              <DeleteOutlined
+                onClick={() => {
+                  removeSkill(item.executorId)
+                }}
+              />
             </List.Item>
           )}
         ></List>
