@@ -178,7 +178,8 @@ function Role() {
               value: e.name,
             }
           })}
-        />
+        />{" "}
+        Qualification:
         <Slider
           min={0}
           max={10}
