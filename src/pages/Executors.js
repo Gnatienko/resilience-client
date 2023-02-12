@@ -45,7 +45,13 @@ function Executors() {
             }}
           >
             {" "}
-            <div>
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                "align-items": "center",
+              }}
+            >
               <List.Item.Meta title={item.name} />
               <RightOutlined />
             </div>
