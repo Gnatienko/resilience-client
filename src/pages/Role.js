@@ -13,6 +13,8 @@ function Role() {
   const [qualification, setQualification] = useState(5)
   const [hoursPerWeek, setHoursPerWeek] = useState(5)
   const [execution, setExecution] = useState(5)
+  const [sliderIsDisable, setSliderIsDisable] = useState(true)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -53,11 +55,13 @@ function Role() {
 
   const handleChangeExecutorSelect = (name) => {
     setSelectedExecutor(executors.find((x) => x.name === name))
+    setSliderIsDisable(false)
   }
   const handleItemClick = (name, qualification, hoursPerWeek) => {
     setSelectedExecutor(executors.find((x) => x.name === name))
     setQualification(qualification)
     setHoursPerWeek(hoursPerWeek)
+    setSliderIsDisable(false)
   }
 
   const SaveChanges = () => {
@@ -181,6 +185,7 @@ function Role() {
         />{" "}
         Qualification:
         <Slider
+          disabled={sliderIsDisable}
           min={0}
           max={10}
           value={qualification}
@@ -188,13 +193,14 @@ function Role() {
         ></Slider>
         Hours per week:
         <Slider
+          disabled={sliderIsDisable}
           min={0}
           max={40}
           value={hoursPerWeek}
           onChange={(e) => setHoursPerWeek(e)}
         ></Slider>
         <Button onClick={addSkill} type="primary">
-          Add skilled executor
+          Add\update skilled executor
         </Button>
         <List
           dataSource={skillCarriers}

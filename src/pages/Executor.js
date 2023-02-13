@@ -13,6 +13,7 @@ function Executor() {
   const [qualification, setQualification] = useState(5)
   const [hoursPerWeek, setHoursPerWeek] = useState(5)
   const [occupation, setOccupation] = useState(5)
+  const [sliderIsDisable, setSliderIsDisable] = useState(true)
 
   const navigate = useNavigate()
 
@@ -78,12 +79,14 @@ function Executor() {
 
   const handleChangeRoleSelect = (name) => {
     setSelectedRole(roles.find((x) => x.name === name))
+    setSliderIsDisable(false)
   }
 
   const handleItemClick = (name, qualification, hoursPerWeek) => {
     setSelectedRole(roles.find((x) => x.name === name))
     setQualification(qualification)
     setHoursPerWeek(hoursPerWeek)
+    setSliderIsDisable(false)
   }
 
   const addSkill = async () => {
@@ -196,6 +199,7 @@ function Executor() {
         />
         Qualification:
         <Slider
+          disabled={sliderIsDisable}
           min={0}
           max={10}
           value={qualification}
@@ -203,13 +207,14 @@ function Executor() {
         ></Slider>
         Hours per week:
         <Slider
+          disabled={sliderIsDisable}
           min={0}
           max={40}
           value={hoursPerWeek}
           onChange={(e) => setHoursPerWeek(e)}
         ></Slider>
         <Button onClick={addSkill} type="primary">
-          Add skill
+          Add/update skill
         </Button>
         <List
           dataSource={skills}
