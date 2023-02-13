@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { List, Progress } from "antd"
 import { RightOutlined } from "@ant-design/icons"
 import { red, green, yellow } from "@ant-design/colors"
+import { WORKING_HOURS_PER_WEEK } from "../CONST.js"
 
 function Executors() {
   const [executors, setExecutors] = useState([])
@@ -17,14 +18,16 @@ function Executors() {
       const data = await Promise.all(res.map((r) => r.json()))
 
       const executors = data[0].map((e) => {
+        const occupation = data[1].reduce((accumulator, object) => {
+          if (object.executorId === e.id) {
+            accumulator = accumulator + object.hoursPerWeek
+          }
+          return accumulator
+        }, 0)
         return {
           ...e,
-          occupation: data[1].reduce((accumulator, object) => {
-            if (object.executorId === e.id) {
-              accumulator = accumulator + object.hoursPerWeek
-            }
-            return accumulator
-          }, 0),
+          occupation: occupation,
+          relativeOccupation: (occupation / WORKING_HOURS_PER_WEEK) * 100,
         }
       })
 
@@ -59,11 +62,11 @@ function Executors() {
               style={{
                 height: "12x",
               }}
-              percent={(item.occupation * 100) / 40}
+              percent={item.relativeOccupation}
               strokeColor={
-                (item.occupation * 100) / 40 < 40
+                item.relativeOccupation < 40
                   ? yellow[5]
-                  : (item.occupation * 100) / 40 < 90
+                  : item.relativeOccupation < 90
                   ? green[5]
                   : red[5]
               }

@@ -1,0 +1,1 @@
+export const WORKING_HOURS_PER_WEEK = 40
