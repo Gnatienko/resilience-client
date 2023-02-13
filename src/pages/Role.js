@@ -171,9 +171,10 @@ function Role() {
         </Form>
       </Card>
       <Card style={{ margin: "1rem" }}>
+        <h4 children="Assignees"></h4>
         <Select
           showSearch
-          style={{ width: "100%" }}
+          style={{ width: "100%", marginBottom: "1rem" }}
           value={selectedExecutor.name}
           placeholder="Chose the executor"
           onChange={(e) => handleChangeExecutorSelect(e)}
