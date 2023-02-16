@@ -67,9 +67,9 @@ function Roles() {
             strokeColor={
               (item.execution / item.requiredSkillHours) * 100 < 40
                 ? red[5]
-                : (item.execution / item.requiredSkillHours) * 100 < 75
-                ? yellow[5]
-                : green[5]
+                : (item.execution / item.requiredSkillHours) * 100 < 90
+                ? green[5]
+                : yellow[5]
             }
           />
         </List.Item>
