@@ -33,14 +33,6 @@ function Home() {
           </List.Item>
         </List>
       </Card>
-      <button
-        class="g-recaptcha"
-        data-sitekey="6LcNe4gkAAAAAGKeXRWJ3R5nMn2u1BKkOYgDx2j7"
-        data-callback="onSubmit"
-        data-action="submit"
-      >
-        Submit
-      </button>
     </div>
   )
 }
