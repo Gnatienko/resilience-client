@@ -25,12 +25,7 @@ function Home() {
       <Card style={{ margin: "1rem" }}>
         <List>
           <List.Item>
-<<<<<<< HEAD
-            <TeamOutlined style={{ fontSize: 30 }} /> Executors!!! {roles.length}
-=======
-            <TeamOutlined style={{ fontSize: 30 }} /> Executors+++{" "}
-            {roles.length}
->>>>>>> dev
+            <TeamOutlined style={{ fontSize: 30 }} /> Executors {roles.length}
           </List.Item>
           <List.Item>
             <SettingOutlined style={{ fontSize: 30 }} /> Roles{" "}
