@@ -1,5 +1,6 @@
 import { useNavigate, Route, Routes } from "react-router-dom"
 import { Menu } from "antd"
+import { GoogleLogin } from "@react-oauth/google"
 import Roles from "./pages/Roles"
 import Executors from "./pages/Executors"
 import AddRole from "./pages/AddRole"
@@ -7,7 +8,6 @@ import Role from "./pages/Role"
 import Executor from "./pages/Executor"
 import AddExecutor from "./pages/AddExecutor"
 import Home from "./pages/Home"
-import { GoogleLogin } from "@react-oauth/google"
 
 import "./App.css"
 
