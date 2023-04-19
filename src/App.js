@@ -15,12 +15,6 @@ const SubMenu = Menu.SubMenu
 
 function App() {
   const navigate = useNavigate()
-  const responseMessage = (response) => {
-    console.log(response)
-  }
-  const errorMessage = (error) => {
-    console.log(error)
-  }
 
   return (
     <div
@@ -69,7 +63,14 @@ function App() {
           ></Route>
         </Routes>
       </div>
-      <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+      <GoogleLogin
+        onSuccess={(credentialResponse) => {
+          console.log(credentialResponse)
+        }}
+        onError={() => {
+          console.log("Login Failed")
+        }}
+      />
     </div>
   )
 }
