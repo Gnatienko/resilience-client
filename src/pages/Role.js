@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input, Slider, Card, Select, List } from "antd"
+import { Button, Form, Input, Slider, Card, Select, List, Avatar } from "antd"
 import { useNavigate } from "react-router-dom"
-import { DeleteOutlined } from "@ant-design/icons"
+import { DeleteOutlined, SaveOutlined } from "@ant-design/icons"
+import emptyRole from "../empty-role.png"
 
 function Role() {
   let { id } = useParams()
@@ -119,8 +120,20 @@ function Role() {
 
   return (
     <div style={{ width: "30rem" }}>
-      <Card style={{ margin: "1rem" }}>
-        <h4 children="Role details"></h4>
+      <Card
+        style={{
+          margin: "1rem",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            msFlexDirection: "row",
+            "justify-content": "space-between",
+          }}
+        >
+          <h4 children="Role details"></h4> <Avatar src={emptyRole} size={64} />
+        </div>
         <Form>
           <Form.Item label={"ID"}> {role.id} </Form.Item>
 
@@ -158,13 +171,17 @@ function Role() {
           >
             <Form.Item>
               <Button onClick={SaveChanges} type="primary">
-                Save changes
+                <div style={{ "vertical-align": "middle" }}>
+                  <SaveOutlined /> Save changes
+                </div>
               </Button>
             </Form.Item>
 
             <Form.Item>
               <Button danger onClick={Delete}>
-                Delete
+                <div style={{ "vertical-align": "middle" }}>
+                  <DeleteOutlined /> Delete
+                </div>
               </Button>
             </Form.Item>
           </div>

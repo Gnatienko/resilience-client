@@ -1,8 +1,19 @@
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Button, Form, Input, List, Select, Slider, Checkbox, Card } from "antd"
-import { DeleteOutlined } from "@ant-design/icons"
+import {
+  Button,
+  Form,
+  Input,
+  List,
+  Select,
+  Slider,
+  Checkbox,
+  Card,
+  Avatar,
+} from "antd"
+import { DeleteOutlined, SaveOutlined } from "@ant-design/icons"
 import { useNavigate } from "react-router-dom"
+import emptyProfile from "../empty-profile.png"
 
 function Executor() {
   let { id } = useParams()
@@ -143,7 +154,16 @@ function Executor() {
   return (
     <div style={{ width: "30rem" }}>
       <Card style={{ margin: "1rem" }}>
-        <h4 children="Executor details"></h4>
+        <div
+          style={{
+            display: "flex",
+            msFlexDirection: "row",
+            "justify-content": "space-between",
+          }}
+        >
+          <h4 children="Executor details"></h4>{" "}
+          <Avatar src={emptyProfile} size={64} />
+        </div>
         <Form>
           <Form.Item label={"ID"}> {executor.id} </Form.Item>
           <Form.Item label="Name">
@@ -159,7 +179,6 @@ function Executor() {
             ></Input>
           </Form.Item>
           <Form.Item label={"Occupation hours per week"}>
-            {" "}
             {occupation}
           </Form.Item>
 
@@ -171,13 +190,17 @@ function Executor() {
           >
             <Form.Item>
               <Button onClick={SaveChanges} type="primary">
-                Save changes
+                <div style={{ "vertical-align": "middle" }}>
+                  <SaveOutlined /> Save changes
+                </div>
               </Button>
             </Form.Item>
 
             <Form.Item>
               <Button danger onClick={Delete}>
-                Delete
+                <div style={{ "vertical-align": "middle" }}>
+                  <DeleteOutlined /> Delete
+                </div>
               </Button>
             </Form.Item>
           </div>

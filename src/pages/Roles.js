@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { List, Progress } from "antd"
+import { List, Progress, Avatar } from "antd"
 import { RightOutlined } from "@ant-design/icons"
 import { red, green, yellow } from "@ant-design/colors"
+import emptyRole from "../empty-role.png"
 
 function Roles() {
   const [roles, setRoles] = useState([])
@@ -56,7 +57,10 @@ function Roles() {
           <div
             style={{ display: "flex", width: "100%", "align-items": "center" }}
           >
-            <List.Item.Meta title={item.name} />
+            <List.Item.Meta
+              title={item.name}
+              avatar={<Avatar src={emptyRole} />}
+            />
             <RightOutlined />{" "}
           </div>{" "}
           <Progress

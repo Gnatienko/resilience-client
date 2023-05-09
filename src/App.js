@@ -29,7 +29,14 @@ function App() {
             : theme.compactAlgorithm,
       }}
     >
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          "justify-content": "space-between",
+          height: "100vh",
+        }}
+      >
         <header
           style={{
             margin: "10px",
@@ -61,11 +68,13 @@ function App() {
             }}
           />
         </header>
-        <Divider style={{ margin: "1px" }} />
+
+        <Divider style={{ margin: "0px" }} />
         <div
           style={{
             display: "flex",
-            msFlexDirection: "row",
+            flex: 1,
+            flexDirection: "row",
             "align-items": "top",
             "justify-content": "space-between",
           }}
@@ -118,6 +127,16 @@ function App() {
             </Routes>
           </div>
         </div>
+
+        <Divider style={{ margin: "0px" }} />
+
+        <footer
+          style={{
+            textAlign: "center",
+          }}
+        >
+          Oleksii Hnatiienko
+        </footer>
       </div>
     </ConfigProvider>
   )
