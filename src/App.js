@@ -29,7 +29,6 @@ function App() {
         }}
       >
         <div>
-          {" "}
           <img src={logo} style={{ width: 40 }} alt="icon" /> Resilience
         </div>
 
