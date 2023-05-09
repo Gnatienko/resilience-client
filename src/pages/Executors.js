@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { List, Progress } from "antd"
+import { List, Progress, Avatar } from "antd"
 import { RightOutlined } from "@ant-design/icons"
 import { red, green, yellow } from "@ant-design/colors"
 import { WORKING_HOURS_PER_WEEK } from "../CONST.js"
+import emptyProfile from "../empty-profile.png"
 
 function Executors() {
   const [executors, setExecutors] = useState([])
@@ -41,7 +42,7 @@ function Executors() {
       <List
         style={{ width: "20rem" }}
         dataSource={executors}
-        renderItem={(item) => (
+        renderItem={(item, index) => (
           <List.Item
             onClick={() => {
               navigate("/executor/" + item.id)
@@ -55,7 +56,14 @@ function Executors() {
                 "align-items": "center",
               }}
             >
-              <List.Item.Meta title={item.name} />
+              <List.Item.Meta
+                title={item.name}
+                avatar={
+                  <Avatar
+                    src={emptyProfile} //src={`https://xsgames.co/randomusers/avatar.php?g=pixel&key=${index}`}
+                  />
+                }
+              />
               <RightOutlined />
             </div>
             <Progress
