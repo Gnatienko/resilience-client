@@ -143,7 +143,7 @@ function Executor() {
   return (
     <div style={{ width: "30rem" }}>
       <Card style={{ margin: "1rem" }}>
-        <h4 children="Info"></h4>
+        <h4 children="Executor details"></h4>
         <Form>
           <Form.Item label={"ID"}> {executor.id} </Form.Item>
           <Form.Item label="Name">

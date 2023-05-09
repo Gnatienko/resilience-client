@@ -120,7 +120,7 @@ function Role() {
   return (
     <div style={{ width: "30rem" }}>
       <Card style={{ margin: "1rem" }}>
-        <h4 children="Info"></h4>
+        <h4 children="Role details"></h4>
         <Form>
           <Form.Item label={"ID"}> {role.id} </Form.Item>
 

@@ -13,6 +13,8 @@ import "./App.css"
 import React from "react"
 import logo from "./logo.png"
 
+import { TeamOutlined, SettingOutlined } from "@ant-design/icons"
+
 const SubMenu = Menu.SubMenu
 
 function App() {
@@ -52,6 +54,7 @@ function App() {
       >
         <div style={{ display: "flex", msFlexDirection: "row" }}>
           <Menu
+            defaultSelectedKeys={["/"]}
             mode="inline"
             style={{ width: "30rem" }}
             onClick={({ key }) => {
@@ -59,17 +62,25 @@ function App() {
             }}
           >
             <Menu.Item key="/">Home</Menu.Item>
-            <SubMenu key="roles" title={<span>Roles</span>}>
+            <SubMenu
+              key="roles"
+              title={<span>Roles</span>}
+              icon={<SettingOutlined />}
+            >
               <Menu.Item key="/roles">All roles</Menu.Item>
               <Menu.Item key="/roles/add">Add role</Menu.Item>
             </SubMenu>
-            <SubMenu key="executors" title={<span>Executors</span>}>
+            <SubMenu
+              key="executors"
+              title={<span>Executors</span>}
+              icon={<TeamOutlined />}
+            >
               <Menu.Item key="/executors">All executors</Menu.Item>
               <Menu.Item key="/executors/add">Add executor</Menu.Item>
             </SubMenu>
           </Menu>
 
-          <Routes>
+          <Routes element={1}>
             <Route path="/role/:id" element={<Role />}></Route>
             <Route path="/" element={<Home />}></Route>
 
