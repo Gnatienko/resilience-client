@@ -24,7 +24,7 @@ function Role() {
         fetch("https://d14f98cedwjzih.cloudfront.net/role/?id=" + id),
         fetch("https://d14f98cedwjzih.cloudfront.net/executor/"),
         fetch(
-          "https://d14f98cedwjzih.cloudfront.net/executor-role/?roleId=" + id
+          "https://d14f98cedwjzih.cloudfront.net/executor-role/?roleId=" + id //1
         ),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
