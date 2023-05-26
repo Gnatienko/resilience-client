@@ -28,7 +28,9 @@ function Executors() {
         return {
           ...e,
           occupation: occupation,
-          relativeOccupation: (occupation / WORKING_HOURS_PER_WEEK) * 100,
+          relativeOccupation: Math.round(
+            (occupation / WORKING_HOURS_PER_WEEK) * 100
+          ),
         }
       })
 

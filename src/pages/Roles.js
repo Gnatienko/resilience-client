@@ -67,7 +67,9 @@ function Roles() {
             style={{
               height: "12x",
             }}
-            percent={(item.execution / item.requiredSkillHours) * 100}
+            percent={Math.round(
+              (item.execution / item.requiredSkillHours) * 100
+            )}
             strokeColor={
               (item.execution / item.requiredSkillHours) * 100 < 40
                 ? red[5]
