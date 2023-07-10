@@ -90,6 +90,8 @@ function Executor() {
 
   const handleChangeRoleSelect = (name) => {
     setSelectedRole(roles.find((x) => x.name === name))
+    setQualification(skills.find((x) => x.name === name).qualification)
+    setHoursPerWeek(skills.find((x) => x.name === name).hoursPerWeek)
     setSliderIsDisable(false)
   }
 

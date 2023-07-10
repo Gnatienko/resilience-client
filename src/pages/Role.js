@@ -56,6 +56,8 @@ function Role() {
 
   const handleChangeExecutorSelect = (name) => {
     setSelectedExecutor(executors.find((x) => x.name === name))
+    setQualification(skillCarriers.find((x) => x.name === name).qualification)
+    setHoursPerWeek(skillCarriers.find((x) => x.name === name).hoursPerWeek)
     setSliderIsDisable(false)
   }
   const handleItemClick = (name, qualification, hoursPerWeek) => {
