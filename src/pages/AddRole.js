@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button, Form, Input, Slider, Card } from "antd"
 import { useState } from "react"
+import { CORE_URL } from "../CONST.js"
 
 function AddRole() {
   const [name, setName] = useState("")
@@ -12,7 +13,8 @@ function AddRole() {
   const Post = () => {
     const options = { method: "POST" }
     fetch(
-      "https://swanky-fossil-dawn.glitch.me/role?name=" +
+      CORE_URL +
+        "/role?name=" +
         name +
         "&weight=" +
         weight +
