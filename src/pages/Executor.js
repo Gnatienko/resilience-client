@@ -99,20 +99,24 @@ function Executor() {
   }
 
   const addSkill = async () => {
-    const options = { method: "PUT" }
-    await fetch(
-      CORE_URL +
-        "/executor-role/skill?executorId=" +
-        executor.id +
-        "&roleId=" +
-        selectedRole.id +
-        "&qualification=" +
-        qualification +
-        "&hoursPerWeek=" +
-        hoursPerWeek,
-      options
-    )
-    window.location.reload()
+    try {
+      const options = { method: "PUT" }
+      await fetch(
+        CORE_URL +
+          "/executor-role/skill?executorId=" +
+          executor.id +
+          "&roleId=" +
+          selectedRole.id +
+          "&qualification=" +
+          qualification +
+          "&hoursPerWeek=" +
+          hoursPerWeek,
+        options
+      )
+      window.location.reload()
+    } catch (error) {
+      console.error("Произошла ошибка при выполнении запроса:", error)
+    }
   }
 
   const removeSkill = async (roleId) => {
