@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { List, Progress, Avatar } from "antd"
 import { RightOutlined } from "@ant-design/icons"
 import { red, green, yellow } from "@ant-design/colors"
-import { WORKING_HOURS_PER_WEEK } from "../CONST.js"
+import { WORKING_HOURS_PER_WEEK, CORE_URL } from "../CONST.js"
 import emptyProfile from "../empty-profile.png"
 
 function Executors() {
@@ -13,8 +13,8 @@ function Executors() {
   useEffect(() => {
     const fetchAll = async () => {
       const res = await Promise.all([
-        fetch("https://d14f98cedwjzih.cloudfront.net/executor/"),
-        fetch("https://d14f98cedwjzih.cloudfront.net/executor-role/"),
+        fetch(CORE_URL + "/executor/"),
+        fetch(CORE_URL + "/executor-role/"),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
 

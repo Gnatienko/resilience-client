@@ -4,6 +4,7 @@ import { Button, Form, Input, Slider, Card, Select, List, Avatar } from "antd"
 import { useNavigate } from "react-router-dom"
 import { DeleteOutlined, SaveOutlined } from "@ant-design/icons"
 import emptyRole from "../empty-role.png"
+import { CORE_URL } from "../CONST.js"
 
 function Role() {
   let { id } = useParams()
@@ -21,11 +22,9 @@ function Role() {
   useEffect(() => {
     const fetchAll = async (id) => {
       const res = await Promise.all([
-        fetch("https://d14f98cedwjzih.cloudfront.net/role/?id=" + id),
-        fetch("https://d14f98cedwjzih.cloudfront.net/executor/"),
-        fetch(
-          "https://d14f98cedwjzih.cloudfront.net/executor-role/?roleId=" + id
-        ),
+        fetch(CORE_URL + "/role/?id=" + id),
+        fetch(CORE_URL + "/executor/"),
+        fetch(CORE_URL + "/executor-role/?roleId=" + id),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
       setRole(data[0])
@@ -70,7 +69,8 @@ function Role() {
   const SaveChanges = () => {
     const options = { method: "PUT" }
     fetch(
-      "https://d14f98cedwjzih.cloudfront.net/role?name=" +
+      CORE_URL +
+        "/role?name=" +
         role.name +
         "&weight=" +
         role.weight +
@@ -85,7 +85,8 @@ function Role() {
   const addSkill = async () => {
     const options = { method: "PUT" }
     await fetch(
-      "https://d14f98cedwjzih.cloudfront.net/executor-role/skill?executorId=" +
+      CORE_URL +
+        "/executor-role/skill?executorId=" +
         selectedExecutor.id +
         "&roleId=" +
         role.id +
@@ -100,17 +101,15 @@ function Role() {
 
   const Delete = async () => {
     const options = { method: "DELETE" }
-    await fetch(
-      "https://d14f98cedwjzih.cloudfront.net/role?id=" + role.id,
-      options
-    )
+    await fetch(CORE_URL + "/role?id=" + role.id, options)
     navigate("/roles/")
   }
 
   const removeSkill = async (executorId) => {
     const options = { method: "DELETE" }
     await fetch(
-      "https://d14f98cedwjzih.cloudfront.net/executor-role?roleId=" +
+      CORE_URL +
+        "/executor-role?roleId=" +
         role.id +
         "&executorId=" +
         executorId,

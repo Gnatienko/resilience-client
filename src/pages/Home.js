@@ -1,6 +1,7 @@
 import { Card, List } from "antd"
 import { TeamOutlined, SettingOutlined } from "@ant-design/icons"
 import { useEffect, useState } from "react"
+import { CORE_URL } from "../CONST.js"
 
 function Home() {
   const [executors, setExecutors] = useState([])
@@ -9,8 +10,8 @@ function Home() {
   useEffect(() => {
     const fetchAll = async () => {
       const res = await Promise.all([
-        fetch("https://d14f98cedwjzih.cloudfront.net/executor/"),
-        fetch("https://d14f98cedwjzih.cloudfront.net/role/"),
+        fetch(CORE_URL + "/executor/"),
+        fetch(CORE_URL + "/role/"),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
       setExecutors(data[0])

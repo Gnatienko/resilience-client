@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button, Form, Input, Card } from "antd"
 import { useState } from "react"
+import { CORE_URL } from "../CONST.js"
 
 function AddExecutor() {
   const [name, setName] = useState("")
@@ -10,13 +11,7 @@ function AddExecutor() {
 
   const Post = () => {
     const options = { method: "POST" }
-    fetch(
-      "https://swanky-fossil-dawn.glitch.me/executor?name=" +
-        name +
-        "&salary=" +
-        salary,
-      options
-    )
+    fetch(CORE_URL + "/executor?name=" + name + "&salary=" + salary, options)
 
     navigate("/executors")
   }

@@ -4,6 +4,7 @@ import { List, Progress, Avatar } from "antd"
 import { RightOutlined } from "@ant-design/icons"
 import { red, green, yellow } from "@ant-design/colors"
 import emptyRole from "../empty-role.png"
+import { CORE_URL } from "../CONST.js"
 
 function Roles() {
   const [roles, setRoles] = useState([])
@@ -13,8 +14,8 @@ function Roles() {
   useEffect(() => {
     const fetchAll = async () => {
       const res = await Promise.all([
-        fetch("https://d14f98cedwjzih.cloudfront.net/role/"),
-        fetch("https://d14f98cedwjzih.cloudfront.net/executor-role/"),
+        fetch(CORE_URL + "/role/"),
+        fetch(CORE_URL + "/executor-role/"),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
 
