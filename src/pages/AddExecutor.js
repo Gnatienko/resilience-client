@@ -11,7 +11,7 @@ function AddExecutor() {
   const Post = () => {
     const options = { method: "POST" }
     fetch(
-      "https://d14f98cedwjzih.cloudfront.net/executor?name=" +
+      "https://swanky-fossil-dawn.glitch.me/executor?name=" +
         name +
         "&salary=" +
         salary,

@@ -12,7 +12,7 @@ function AddRole() {
   const Post = () => {
     const options = { method: "POST" }
     fetch(
-      "https://d14f98cedwjzih.cloudfront.net/role?name=" +
+      "https://swanky-fossil-dawn.glitch.me/role?name=" +
         name +
         "&weight=" +
         weight +

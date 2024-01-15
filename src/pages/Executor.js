@@ -31,7 +31,7 @@ function Executor() {
   useEffect(() => {
     const fetchExecutor = async (id) => {
       const res = await Promise.all([
-        fetch("https://d14f98cedwjzih.cloudfront.net/executor/?id=" + id),
+        fetch("https://d14f98cedwjzih.cloudfront.net/executor/?id=" + id), //https://swanky-fossil-dawn.glitch.me
         fetch("https://d14f98cedwjzih.cloudfront.net/role/"),
         fetch(
           "https://d14f98cedwjzih.cloudfront.net/executor/skill?executorId=" +
