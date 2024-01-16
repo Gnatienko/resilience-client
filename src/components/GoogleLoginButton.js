@@ -6,7 +6,6 @@ const GoogleLoginButton = () => {
   return (
     <GoogleLogin
       onSuccess={(credentialResponse) => {
-        // console.log(credentialResponse)
         fetch(TEST_CORE_URL + "/sign-in", {
           method: "POST",
           headers: {
@@ -22,7 +21,9 @@ const GoogleLoginButton = () => {
             }
           })
           .then((data) => {
-            console.log(data)
+            console.log(data.jwtToken)
+
+            localStorage.setItem("jwtToken", data.jwtToken) //localStorage.getItem("jwtToken")
           })
           .catch((error) => {
             console.error("An error occurred during the request:", error)
