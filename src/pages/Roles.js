@@ -13,9 +13,15 @@ function Roles() {
 
   useEffect(() => {
     const fetchAll = async () => {
+      const headers = {
+        Authorization: "Bearer " + sessionStorage.getItem("jwtToken"),
+      }
+
+      console.log(headers)
+
       const res = await Promise.all([
-        fetch(CORE_URL + "/role/"),
-        fetch(CORE_URL + "/executor-role/"),
+        fetch(CORE_URL + "/role/", { headers }),
+        fetch(CORE_URL + "/executor-role/", { headers }),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
 

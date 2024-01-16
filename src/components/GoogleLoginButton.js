@@ -1,12 +1,21 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { GoogleLogin } from "@react-oauth/google"
-import { TEST_CORE_URL } from "../CONST.js"
+import { CORE_URL } from "../CONST.js"
 
 const GoogleLoginButton = () => {
+  const [jwtToken, setJwtToken] = useState(null)
+
+  useEffect(() => {
+    if (jwtToken) {
+      sessionStorage.setItem("jwtToken", jwtToken)
+      // console.log(sessionStorage.getItem("jwtToken"))
+    }
+  }, [jwtToken])
+
   return (
     <GoogleLogin
       onSuccess={(credentialResponse) => {
-        fetch(TEST_CORE_URL + "/sign-in", {
+        fetch(CORE_URL + "/sign-in", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -21,9 +30,7 @@ const GoogleLoginButton = () => {
             }
           })
           .then((data) => {
-            console.log(data.jwtToken)
-
-            localStorage.setItem("jwtToken", data.jwtToken) //localStorage.getItem("jwtToken")
+            setJwtToken(data.jwtToken)
           })
           .catch((error) => {
             console.error("An error occurred during the request:", error)
