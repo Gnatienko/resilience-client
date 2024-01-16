@@ -1,6 +1,5 @@
 import { useNavigate, Route, Routes } from "react-router-dom"
 import { Menu, Divider } from "antd"
-import { GoogleLogin } from "@react-oauth/google"
 import Roles from "./pages/Roles"
 import Executors from "./pages/Executors"
 import AddRole from "./pages/AddRole"
@@ -10,6 +9,7 @@ import AddExecutor from "./pages/AddExecutor"
 import Home from "./pages/Home"
 import "./App.css"
 import logo from "./logo.png"
+import GoogleLoginButton from "./components/GoogleLoginButton"
 
 import { TeamOutlined, SettingOutlined } from "@ant-design/icons"
 
@@ -38,15 +38,7 @@ function App() {
         <div>
           <img src={logo} style={{ width: 40 }} alt="icon" /> Resilience
         </div>
-
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            console.log(credentialResponse)
-          }}
-          onError={() => {
-            console.log("Login Failed")
-          }}
-        />
+        <GoogleLoginButton />
       </header>
 
       <Divider style={{ margin: "0px" }} />
