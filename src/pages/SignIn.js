@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react"
 import { GoogleLogin } from "@react-oauth/google"
 import { CORE_URL } from "../CONST.js"
 
-const GoogleLoginButton = () => {
+const SignIn = () => {
   const [jwtToken, setJwtToken] = useState(null)
 
   useEffect(() => {
     if (jwtToken) {
       sessionStorage.setItem("jwtToken", jwtToken)
-      // console.log(sessionStorage.getItem("jwtToken"))
+      window.location.reload()
     }
   }, [jwtToken])
 
@@ -32,6 +32,7 @@ const GoogleLoginButton = () => {
           .then((data) => {
             setJwtToken(data.jwtToken)
           })
+
           .catch((error) => {
             console.error("An error occurred during the request:", error)
           })
@@ -43,4 +44,4 @@ const GoogleLoginButton = () => {
   )
 }
 
-export default GoogleLoginButton
+export default SignIn

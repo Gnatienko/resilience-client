@@ -9,7 +9,8 @@ import AddExecutor from "./pages/AddExecutor"
 import Home from "./pages/Home"
 import "./App.css"
 import logo from "./logo.png"
-import GoogleLoginButton from "./components/GoogleLoginButton"
+import SignIn from "./pages/SignIn"
+import SignOut from "./components/SignOutButton"
 
 import { TeamOutlined, SettingOutlined } from "@ant-design/icons"
 
@@ -18,7 +19,7 @@ const SubMenu = Menu.SubMenu
 function App() {
   const navigate = useNavigate()
 
-  return (
+  return sessionStorage.getItem("jwtToken") ? (
     <div
       style={{
         display: "flex",
@@ -38,7 +39,7 @@ function App() {
         <div>
           <img src={logo} style={{ width: 40 }} alt="icon" /> Resilience
         </div>
-        <GoogleLoginButton />
+        <SignOut />
       </header>
 
       <Divider style={{ margin: "0px" }} />
@@ -110,6 +111,8 @@ function App() {
         Oleksii Hnatiienko
       </footer>
     </div>
+  ) : (
+    <SignIn />
   )
 }
 
