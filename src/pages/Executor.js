@@ -115,7 +115,7 @@ function Executor() {
       )
       window.location.reload()
     } catch (error) {
-      console.error("Произошла ошибка при выполнении запроса:", error)
+      console.error("Error on add skill button", error)
     }
   }
 
