@@ -7,7 +7,7 @@ import "./SignIn.css"
 const SignIn = () => {
   const [jwtToken, setJwtToken] = useState(null)
   const [loading, setLoading] = useState(false)
-  const maxRetries = 15
+  const maxRetries = 20
   const retryDelay = 1000
   const [messageApi, contextHolder] = message.useMessage()
 
