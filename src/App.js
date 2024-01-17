@@ -24,7 +24,7 @@ function App() {
       style={{
         display: "flex",
         flexDirection: "column",
-        "justify-content": "space-between",
+        justifyContent: "space-between",
         height: "100vh",
       }}
     >
@@ -33,7 +33,7 @@ function App() {
           margin: "10px",
           display: "flex",
           msFlexDirection: "row",
-          "justify-content": "space-between",
+          justifyContent: "space-between",
         }}
       >
         <div>
@@ -48,8 +48,8 @@ function App() {
           display: "flex",
           flex: 1,
           flexDirection: "row",
-          "align-items": "top",
-          "justify-content": "space-between",
+          alignItems: "top",
+          justifyContent: "space-between",
         }}
       >
         <div style={{ display: "flex", msFlexDirection: "row" }}>

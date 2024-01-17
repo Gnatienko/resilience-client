@@ -59,7 +59,7 @@ function Executors() {
               style={{
                 display: "flex",
                 width: "100%",
-                "align-items": "center",
+                alignItems: "center",
               }}
             >
               <List.Item.Meta

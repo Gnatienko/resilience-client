@@ -129,7 +129,7 @@ function Role() {
           style={{
             display: "flex",
             msFlexDirection: "row",
-            "justify-content": "space-between",
+            justifyContent: "space-between",
           }}
         >
           <h4 children="Role details"></h4> <Avatar src={emptyRole} size={64} />

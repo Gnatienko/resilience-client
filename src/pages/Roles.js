@@ -56,12 +56,10 @@ function Roles() {
           style={{
             display: "flex",
             "flex-direction": "column",
-            "align-items": "flex-start",
+            alignItems: "flex-start",
           }}
         >
-          <div
-            style={{ display: "flex", width: "100%", "align-items": "center" }}
-          >
+          <div style={{ display: "flex", width: "100%", alignItems: "center" }}>
             <List.Item.Meta
               title={item.name}
               avatar={<Avatar src={emptyRole} />}

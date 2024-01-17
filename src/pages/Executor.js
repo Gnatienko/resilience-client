@@ -185,7 +185,7 @@ function Executor() {
           style={{
             display: "flex",
             msFlexDirection: "row",
-            "justify-content": "space-between",
+            justifyContent: "space-between",
           }}
         >
           <h4 children="Executor details"></h4>{" "}
@@ -217,7 +217,7 @@ function Executor() {
           >
             <Form.Item>
               <Button onClick={SaveChanges} type="primary">
-                <div style={{ "vertical-align": "middle" }}>
+                <div style={{ verticalAlign: "middle" }}>
                   <SaveOutlined /> Save changes
                 </div>
               </Button>
@@ -225,7 +225,7 @@ function Executor() {
 
             <Form.Item>
               <Button danger onClick={Delete}>
-                <div style={{ "vertical-align": "middle" }}>
+                <div style={{ verticalAlign: "middle" }}>
                   <DeleteOutlined /> Delete
                 </div>
               </Button>
