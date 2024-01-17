@@ -14,7 +14,6 @@ import {
 import { DeleteOutlined, SaveOutlined } from "@ant-design/icons"
 import { useNavigate } from "react-router-dom"
 import emptyProfile from "../empty-profile.png"
-import { CORE_URL } from "../CONST.js"
 
 function Executor() {
   let { id } = useParams()
@@ -32,9 +31,11 @@ function Executor() {
   useEffect(() => {
     const fetchExecutor = async (id) => {
       const res = await Promise.all([
-        fetch(CORE_URL + "/executor/?id=" + id), //https://swanky-fossil-dawn.glitch.me
-        fetch(CORE_URL + "/role/"),
-        fetch(CORE_URL + "/executor/skill?executorId=" + id),
+        fetch(process.env.REACT_APP_CORE_URL + "/executor/?id=" + id), //https://swanky-fossil-dawn.glitch.me
+        fetch(process.env.REACT_APP_CORE_URL + "/role/"),
+        fetch(
+          process.env.REACT_APP_CORE_URL + "/executor/skill?executorId=" + id
+        ),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
       setExecutor(data[0])
@@ -67,7 +68,7 @@ function Executor() {
   const SaveChanges = async () => {
     const options = { method: "PUT" }
     await fetch(
-      CORE_URL +
+      process.env.REACT_APP_CORE_URL +
         "/executor?name=" +
         executor.name +
         "&id=" +
@@ -80,7 +81,10 @@ function Executor() {
 
   const Delete = async () => {
     const options = { method: "DELETE" }
-    await fetch(CORE_URL + "/executor?id=" + executor.id, options)
+    await fetch(
+      process.env.REACT_APP_CORE_URL + "/executor?id=" + executor.id,
+      options
+    )
     navigate("/executors/")
   }
 
@@ -102,7 +106,7 @@ function Executor() {
     try {
       const options = { method: "PUT" }
       await fetch(
-        CORE_URL +
+        process.env.REACT_APP_CORE_URL +
           "/executor-role/skill?executorId=" +
           executor.id +
           "&roleId=" +
@@ -122,7 +126,7 @@ function Executor() {
   const removeSkill = async (roleId) => {
     const options = { method: "PUT" }
     await fetch(
-      CORE_URL +
+      process.env.REACT_APP_CORE_URL +
         "/executor-role/skill?executorId=" +
         executor.id +
         "&roleId=" +
@@ -131,7 +135,7 @@ function Executor() {
       options
     )
     await fetch(
-      CORE_URL +
+      process.env.REACT_APP_CORE_URL +
         "/executor-role/duty/?executorId=" +
         executor.id +
         "&roleId=" +
@@ -145,7 +149,7 @@ function Executor() {
   const setDuty = async (roleId, isDuty) => {
     const options = { method: "PUT" }
     await fetch(
-      CORE_URL +
+      process.env.REACT_APP_CORE_URL +
         "/executor-role/duty/?executorId=" +
         executor.id +
         "&roleId=" +

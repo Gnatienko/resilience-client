@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { GoogleLogin } from "@react-oauth/google"
-import { CORE_URL } from "../CONST.js"
 
 const SignIn = () => {
   const [jwtToken, setJwtToken] = useState(null)
@@ -15,7 +14,7 @@ const SignIn = () => {
   return (
     <GoogleLogin
       onSuccess={(credentialResponse) => {
-        fetch(CORE_URL + "/sign-in", {
+        fetch(process.env.REACT_APP_CORE_URL + "/sign-in", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

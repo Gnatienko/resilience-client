@@ -1,21 +1,16 @@
 import { Card, List } from "antd"
 import { TeamOutlined, SettingOutlined } from "@ant-design/icons"
 import { useEffect, useState } from "react"
-import { CORE_URL } from "../CONST.js"
 
 function Home() {
   const [executors, setExecutors] = useState([])
   const [roles, setRoles] = useState([])
 
   useEffect(() => {
-    const test = process.env.REACT_APP_CORE_URL
-    console.log(test)
-    console.log(1)
-
     const fetchAll = async () => {
       const res = await Promise.all([
-        fetch(CORE_URL + "/executor/"),
-        fetch(CORE_URL + "/role/"),
+        fetch(process.env.REACT_APP_CORE_URL + "/executor/"),
+        fetch(process.env.REACT_APP_CORE_URL + "/role/"),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
       setExecutors(data[0])
