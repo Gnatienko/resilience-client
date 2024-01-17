@@ -1,6 +1,7 @@
 import { Card, List } from "antd"
 import { TeamOutlined, SettingOutlined } from "@ant-design/icons"
 import { useEffect, useState } from "react"
+import { AUTH_HEADER } from "../CONST.js"
 
 function Home() {
   const [executors, setExecutors] = useState([])
@@ -9,8 +10,12 @@ function Home() {
   useEffect(() => {
     const fetchAll = async () => {
       const res = await Promise.all([
-        fetch(process.env.REACT_APP_CORE_URL + "/executor/"),
-        fetch(process.env.REACT_APP_CORE_URL + "/role/"),
+        fetch(process.env.REACT_APP_CORE_URL + "/executor/", {
+          headers: AUTH_HEADER,
+        }),
+        fetch(process.env.REACT_APP_CORE_URL + "/role/", {
+          headers: AUTH_HEADER,
+        }),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
       setExecutors(data[0])

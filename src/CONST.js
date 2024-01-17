@@ -1,2 +1,4 @@
 export const WORKING_HOURS_PER_WEEK = 40
-export const CORE_URL = "https://freckle-hot-indigo.glitch.me/"
+export const AUTH_HEADER = {
+  Authorization: "Bearer " + sessionStorage.getItem("jwtToken"),
+}

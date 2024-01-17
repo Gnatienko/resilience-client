@@ -4,6 +4,7 @@ import { List, Progress, Avatar } from "antd"
 import { RightOutlined } from "@ant-design/icons"
 import { red, green, yellow } from "@ant-design/colors"
 import emptyRole from "../empty-role.png"
+import { AUTH_HEADER } from "../CONST.js"
 
 function Roles() {
   const [roles, setRoles] = useState([])
@@ -12,15 +13,13 @@ function Roles() {
 
   useEffect(() => {
     const fetchAll = async () => {
-      const headers = {
-        Authorization: "Bearer " + sessionStorage.getItem("jwtToken"),
-      }
-
-      console.log(headers)
-
       const res = await Promise.all([
-        fetch(process.env.REACT_APP_CORE_URL + "/role/", { headers }),
-        fetch(process.env.REACT_APP_CORE_URL + "/executor-role/", { headers }),
+        fetch(process.env.REACT_APP_CORE_URL + "/role/", {
+          headers: AUTH_HEADER,
+        }),
+        fetch(process.env.REACT_APP_CORE_URL + "/executor-role/", {
+          headers: AUTH_HEADER,
+        }),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
 
