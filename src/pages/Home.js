@@ -8,6 +8,10 @@ function Home() {
   const [roles, setRoles] = useState([])
 
   useEffect(() => {
+    const test = process.env.REACT_APP_CORE_URL
+    console.log(test)
+    console.log(1)
+
     const fetchAll = async () => {
       const res = await Promise.all([
         fetch(CORE_URL + "/executor/"),
