@@ -33,6 +33,7 @@ function Home() {
           </List.Item>
         </List>
       </Card>
+      v0.0.1
     </div>
   )
 }
