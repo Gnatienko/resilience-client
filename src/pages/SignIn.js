@@ -7,9 +7,11 @@ import "./SignIn.css"
 const SignIn = () => {
   const [jwtToken, setJwtToken] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [loadingTip, setLoadingTip] = useState("Loading")
+  const [messageApi, contextHolder] = message.useMessage()
+
   const maxRetries = 21
   const retryDelay = 1000
-  const [messageApi, contextHolder] = message.useMessage()
 
   useEffect(() => {
     if (jwtToken) {
@@ -46,6 +48,9 @@ const SignIn = () => {
           setTimeout(() => {
             handleGoogleLogin(credentialResponse, retryCount + 1)
           }, retryDelay)
+          if (retryCount === 1) {
+            setLoadingTip("A couple more seconds...")
+          }
         } else {
           const error = () => {
             messageApi.open({
@@ -65,7 +70,7 @@ const SignIn = () => {
       {contextHolder}
 
       {loading ? (
-        <Spin tip="Loading" size="large"></Spin>
+        <Spin tip={loadingTip} size="large"></Spin>
       ) : (
         <GoogleLogin
           onSuccess={handleGoogleLogin}
