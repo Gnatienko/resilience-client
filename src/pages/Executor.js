@@ -88,7 +88,7 @@ function Executor() {
   }
 
   const Delete = async () => {
-    const options = { method: "DELETE" }
+    const options = { method: "DELETE", headers: AUTH_HEADER }
     await fetch(
       process.env.REACT_APP_CORE_URL + "/executor?id=" + executor.id,
       options

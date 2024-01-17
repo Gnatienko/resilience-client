@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button, Form, Input, Slider, Card } from "antd"
 import { useState } from "react"
+import { AUTH_HEADER } from "../CONST.js"
 
 function AddRole() {
   const [name, setName] = useState("")
@@ -10,7 +11,7 @@ function AddRole() {
   const navigate = useNavigate()
 
   const Post = () => {
-    const options = { method: "POST" }
+    const options = { method: "POST", headers: AUTH_HEADER }
     fetch(
       process.env.REACT_APP_CORE_URL +
         "/role?name=" +

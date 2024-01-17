@@ -4,6 +4,7 @@ import { Button, Form, Input, Slider, Card, Select, List, Avatar } from "antd"
 import { useNavigate } from "react-router-dom"
 import { DeleteOutlined, SaveOutlined } from "@ant-design/icons"
 import emptyRole from "../empty-role.png"
+import { AUTH_HEADER } from "../CONST.js"
 
 function Role() {
   let { id } = useParams()
@@ -21,9 +22,15 @@ function Role() {
   useEffect(() => {
     const fetchAll = async (id) => {
       const res = await Promise.all([
-        fetch(process.env.REACT_APP_CORE_URL + "/role/?id=" + id),
-        fetch(process.env.REACT_APP_CORE_URL + "/executor/"),
-        fetch(process.env.REACT_APP_CORE_URL + "/executor-role/?roleId=" + id),
+        fetch(process.env.REACT_APP_CORE_URL + "/role/?id=" + id, {
+          headers: AUTH_HEADER,
+        }),
+        fetch(process.env.REACT_APP_CORE_URL + "/executor/", {
+          headers: AUTH_HEADER,
+        }),
+        fetch(process.env.REACT_APP_CORE_URL + "/executor-role/?roleId=" + id, {
+          headers: AUTH_HEADER,
+        }),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
       setRole(data[0])
@@ -66,7 +73,7 @@ function Role() {
   }
 
   const SaveChanges = () => {
-    const options = { method: "PUT" }
+    const options = { method: "PUT", headers: AUTH_HEADER }
     fetch(
       process.env.REACT_APP_CORE_URL +
         "/role?name=" +
@@ -82,7 +89,7 @@ function Role() {
   }
 
   const addSkill = async () => {
-    const options = { method: "PUT" }
+    const options = { method: "PUT", headers: AUTH_HEADER }
     await fetch(
       process.env.REACT_APP_CORE_URL +
         "/executor-role/skill?executorId=" +
@@ -99,13 +106,13 @@ function Role() {
   }
 
   const Delete = async () => {
-    const options = { method: "DELETE" }
+    const options = { method: "DELETE", headers: AUTH_HEADER }
     await fetch(process.env.REACT_APP_CORE_URL + "/role?id=" + role.id, options)
     navigate("/roles/")
   }
 
   const removeSkill = async (executorId) => {
-    const options = { method: "DELETE" }
+    const options = { method: "DELETE", headers: AUTH_HEADER }
     await fetch(
       process.env.REACT_APP_CORE_URL +
         "/executor-role?roleId=" +

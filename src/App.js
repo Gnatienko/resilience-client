@@ -1,4 +1,5 @@
 import { useNavigate, Route, Routes } from "react-router-dom"
+import { useEffect } from "react"
 import { Menu, Divider } from "antd"
 import Roles from "./pages/Roles"
 import Executors from "./pages/Executors"
@@ -11,13 +12,33 @@ import "./App.css"
 import logo from "./logo.png"
 import SignIn from "./pages/SignIn"
 import SignOut from "./components/SignOutButton"
-
 import { TeamOutlined, SettingOutlined } from "@ant-design/icons"
+import { decodeJwt } from "jose"
 
 const SubMenu = Menu.SubMenu
 
 function App() {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const jwtToken = sessionStorage.getItem("jwtToken")
+    if (jwtToken) {
+      try {
+        const decodedToken = decodeJwt(jwtToken)
+        const currentTimestamp = Math.floor(Date.now() / 1000)
+        console.log(decodedToken)
+        console.log(currentTimestamp)
+        if (decodedToken.exp && decodedToken.exp < currentTimestamp) {
+          sessionStorage.removeItem("jwtToken")
+          navigate("/signin")
+        }
+      } catch (error) {
+        console.error("Error decoding JWT:", error)
+        sessionStorage.removeItem("jwtToken")
+        navigate("/signin")
+      }
+    }
+  }, [navigate])
 
   const handleLogoClick = () => {
     navigate("/")
@@ -86,6 +107,7 @@ function App() {
           </Menu>
 
           <Routes element={1}>
+            <Route path="/signin" key="/signin" element={<SignIn />}></Route>
             <Route path="/role/:id" element={<Role />}></Route>
             <Route path="/" element={<Home />}></Route>
 
