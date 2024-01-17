@@ -19,6 +19,10 @@ const SubMenu = Menu.SubMenu
 function App() {
   const navigate = useNavigate()
 
+  const handleLogoClick = () => {
+    navigate("/")
+  }
+
   return sessionStorage.getItem("jwtToken") ? (
     <div
       style={{
@@ -36,9 +40,10 @@ function App() {
           justifyContent: "space-between",
         }}
       >
-        <div>
+        <div onClick={handleLogoClick}>
           <img src={logo} style={{ width: 40 }} alt="icon" /> Resilience
         </div>
+
         <SignOut />
       </header>
 
