@@ -113,7 +113,7 @@ function App() {
           textAlign: "center",
         }}
       >
-        Oleksii Hnatiienko
+        footer
       </footer>
     </div>
   ) : (
