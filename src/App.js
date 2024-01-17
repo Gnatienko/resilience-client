@@ -113,7 +113,7 @@ function App() {
           textAlign: "center",
         }}
       >
-        footer
+        v0.0.2
       </footer>
     </div>
   ) : (
