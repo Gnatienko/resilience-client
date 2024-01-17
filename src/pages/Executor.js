@@ -14,6 +14,7 @@ import {
 import { DeleteOutlined, SaveOutlined } from "@ant-design/icons"
 import { useNavigate } from "react-router-dom"
 import emptyProfile from "../empty-profile.png"
+import { AUTH_HEADER } from "../CONST.js"
 
 function Executor() {
   let { id } = useParams()
@@ -31,10 +32,17 @@ function Executor() {
   useEffect(() => {
     const fetchExecutor = async (id) => {
       const res = await Promise.all([
-        fetch(process.env.REACT_APP_CORE_URL + "/executor/?id=" + id), //https://swanky-fossil-dawn.glitch.me
-        fetch(process.env.REACT_APP_CORE_URL + "/role/"),
+        fetch(process.env.REACT_APP_CORE_URL + "/executor/?id=" + id, {
+          headers: AUTH_HEADER,
+        }),
+        fetch(process.env.REACT_APP_CORE_URL + "/role/", {
+          headers: AUTH_HEADER,
+        }),
         fetch(
-          process.env.REACT_APP_CORE_URL + "/executor/skill?executorId=" + id
+          process.env.REACT_APP_CORE_URL + "/executor/skill?executorId=" + id,
+          {
+            headers: AUTH_HEADER,
+          }
         ),
       ])
       const data = await Promise.all(res.map((r) => r.json()))
@@ -66,7 +74,7 @@ function Executor() {
   }
 
   const SaveChanges = async () => {
-    const options = { method: "PUT" }
+    const options = { method: "PUT", headers: AUTH_HEADER }
     await fetch(
       process.env.REACT_APP_CORE_URL +
         "/executor?name=" +
@@ -90,8 +98,17 @@ function Executor() {
 
   const handleChangeRoleSelect = (name) => {
     setSelectedRole(roles.find((x) => x.name === name))
-    setQualification(skills.find((x) => x.name === name).qualification)
-    setHoursPerWeek(skills.find((x) => x.name === name).hoursPerWeek)
+    const selectedSkill = skills.find((x) => x.name === name)
+    setQualification(
+      selectedSkill && selectedSkill.qualification
+        ? selectedSkill.qualification
+        : 5
+    )
+    setHoursPerWeek(
+      selectedSkill && selectedSkill.hoursPerWeek
+        ? selectedSkill.hoursPerWeek
+        : 5
+    )
     setSliderIsDisable(false)
   }
 
@@ -104,7 +121,7 @@ function Executor() {
 
   const addSkill = async () => {
     try {
-      const options = { method: "PUT" }
+      const options = { method: "PUT", headers: AUTH_HEADER }
       await fetch(
         process.env.REACT_APP_CORE_URL +
           "/executor-role/skill?executorId=" +
@@ -124,7 +141,7 @@ function Executor() {
   }
 
   const removeSkill = async (roleId) => {
-    const options = { method: "PUT" }
+    const options = { method: "PUT", headers: AUTH_HEADER }
     await fetch(
       process.env.REACT_APP_CORE_URL +
         "/executor-role/skill?executorId=" +
@@ -147,7 +164,7 @@ function Executor() {
   }
 
   const setDuty = async (roleId, isDuty) => {
-    const options = { method: "PUT" }
+    const options = { method: "PUT", headers: AUTH_HEADER }
     await fetch(
       process.env.REACT_APP_CORE_URL +
         "/executor-role/duty/?executorId=" +
