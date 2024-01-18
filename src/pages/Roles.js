@@ -74,8 +74,10 @@ function Roles() {
               (item.execution / item.requiredSkillHours) * 100
             )}
             strokeColor={
-              (item.execution / item.requiredSkillHours) * 100 < 40
+              (item.execution / item.requiredSkillHours) * 100 < 30
                 ? red[5]
+                : (item.execution / item.requiredSkillHours) * 100 < 60
+                ? yellow[5]
                 : (item.execution / item.requiredSkillHours) * 100 < 90
                 ? green[5]
                 : yellow[5]
