@@ -51,6 +51,15 @@ const SignIn = () => {
           if (retryCount === 3) {
             setLoadingTip("A couple more seconds...")
           }
+          if (retryCount === 7) {
+            setLoadingTip("Very close...")
+          }
+          if (retryCount === 11) {
+            setLoadingTip("Almost there...")
+          }
+          if (retryCount === 11) {
+            setLoadingTip("Seems something goes wrong...")
+          }
         } else {
           const error = () => {
             messageApi.open({
