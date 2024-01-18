@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { GoogleLogin } from "@react-oauth/google"
-import { Spin, message } from "antd"
+import { Spin, message, Button } from "antd"
 
 import "./SignIn.css"
 
@@ -81,12 +81,28 @@ const SignIn = () => {
       {loading ? (
         <Spin tip={loadingTip} size="large"></Spin>
       ) : (
-        <GoogleLogin
-          onSuccess={handleGoogleLogin}
-          onError={() => {
-            console.log("Login Failed")
-          }}
-        />
+        <>
+          <GoogleLogin
+            onSuccess={handleGoogleLogin}
+            onError={() => {
+              console.log("Login Failed")
+            }}
+          />
+          <Button
+            onClick={() => {
+              setLoading(true)
+              sessionStorage.setItem(
+                "jwtToken",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMDkwODUzNDY3NjEzLTVtbnFkOW5xN2FtOXYxM2piNjE4a242aDJ2ZDlvMHRzLmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiMTA5MDg1MzQ2NzYxMy01bW5xZDlucTdhbTl2MTNqYjYxOGtuNmgydmQ5bzB0cy5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjEwNjI4OTc5NTQ4MTQ4OTI5MzI3NyIsImVtYWlsIjoiZ25hdGllbmtvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYmYiOjE3MDU1ODM3MTUsIm5hbWUiOiJPbGVrc2l5IEduYXRpZW5rbyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NMcFJqcDFDTFdkbzFrTkhwZVFscnV1YkRaVUJuT2hBTnA1R3J4cEZOWnJzZz1zOTYtYyIsImdpdmVuX25hbWUiOiJPbGVrc2l5IiwiZmFtaWx5X25hbWUiOiJHbmF0aWVua28iLCJsb2NhbGUiOiJlbi1VUyIsImlhdCI6MTcwNTU4NDAxNSwiZXhwIjozMzI2MjQ4NTU3MSwianRpIjoiMzZmNTZmN2Y1YTNlODg0N2U5N2VkZDcxMzZhN2Y3MGFkOTExNThjNyJ9.c4sGyW37IiNcZ6zVrVKz3cl-P0fwOOJaTYgGNs03oVU"
+              )
+              setLoading(false)
+              window.location.reload()
+            }}
+          >
+            {" "}
+            Test SignIn
+          </Button>
+        </>
       )}
     </div>
   )
