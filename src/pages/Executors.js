@@ -29,6 +29,9 @@ function Executors() {
           }
           return accumulator
         }, 0)
+        console.log(occupation)
+        console.log(WORKING_HOURS_PER_WEEK)
+
         return {
           ...e,
           occupation: occupation,

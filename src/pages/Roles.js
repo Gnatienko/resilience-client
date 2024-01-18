@@ -55,7 +55,7 @@ function Roles() {
           }}
           style={{
             display: "flex",
-            "flex-direction": "column",
+            flexDirection: "column",
             alignItems: "flex-start",
           }}
         >

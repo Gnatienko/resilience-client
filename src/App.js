@@ -26,8 +26,7 @@ function App() {
       try {
         const decodedToken = decodeJwt(jwtToken)
         const currentTimestamp = Math.floor(Date.now() / 1000)
-        console.log(decodedToken)
-        console.log(currentTimestamp)
+
         if (decodedToken.exp && decodedToken.exp < currentTimestamp) {
           sessionStorage.removeItem("jwtToken")
           navigate("/signin")
