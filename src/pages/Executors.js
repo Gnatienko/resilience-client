@@ -78,7 +78,9 @@ function Executors() {
               }}
               percent={item.relativeOccupation}
               strokeColor={
-                item.relativeOccupation < 40
+                item.relativeOccupation < 15
+                  ? red[5]
+                  : item.relativeOccupation < 40
                   ? yellow[5]
                   : item.relativeOccupation < 90
                   ? green[5]
