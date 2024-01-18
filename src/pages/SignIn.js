@@ -48,7 +48,7 @@ const SignIn = () => {
           setTimeout(() => {
             handleGoogleLogin(credentialResponse, retryCount + 1)
           }, retryDelay)
-          if (retryCount === 1) {
+          if (retryCount === 3) {
             setLoadingTip("A couple more seconds...")
           }
         } else {
