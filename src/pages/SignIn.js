@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { GoogleLogin } from "@react-oauth/google"
 import { Spin, message, Button } from "antd"
+import logo from "../logo.png"
 
 import "./SignIn.css"
 
@@ -75,13 +76,36 @@ const SignIn = () => {
   }
 
   return (
-    <div className="center-container">
+    <div
+      className="center-container"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+      }}
+    >
       {contextHolder}
+
+      <div
+        className="logo-container"
+        style={{
+          textAlign: "center",
+          position: "absolute",
+          top: 0,
+          margin: "7rem",
+        }}
+      >
+        <img src={logo} style={{ width: 100 }} alt="icon" />
+        <h1 style={{ marginBottom: "3rem" }}>Resilience</h1>
+      </div>
 
       {loading ? (
         <Spin tip={loadingTip} size="large"></Spin>
       ) : (
         <div
+          className="sign-in-container"
           style={{
             display: "flex",
             flexDirection: "column",
